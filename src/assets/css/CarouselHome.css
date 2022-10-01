@@ -1,0 +1,33 @@
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next,
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-next:hover {
+  font-size: inherit;
+  color: currentColor;
+}
+
+.ant-carousel .slick-prev,
+.ant-carousel .slick-prev:hover {
+  left: 30px;
+  font-size: 40px;
+  z-index: 2;
+  color: white;
+  transition: 0.5s;
+}
+
+.ant-carousel .slick-next,
+.ant-carousel .slick-next:hover {
+  right: 30px;
+  font-size: 40px;
+  z-index: 2;
+  color: white;
+  transition: 0.5s;
+}
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-next:hover {
+  opacity: 0.5;
+}
+body .slick-prev::before,
+body .slick-next::before {
+  display: none;
+}

@@ -1,21 +1,37 @@
 import { Carousel } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import "../../../assets/css/CarouselHome.css";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { movieService } from "../../../services/movieService";
+import { setDataBanner } from "../../../redux/slice/movieSlice";
 const contentStyle = {
   height: "600px",
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
   backgroundPosition: "center",
-  backgroundSize: "cover%",
+  backgroundSize: "100%",
   backgroundRepeat: "no-repeat",
 };
 
 export default function HomeCarousel(props) {
   const { dataBanner } = useSelector((state) => state.movieSlice);
   console.log("dataBanner: ", dataBanner);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const listBanner = await movieService.getListBanner();
+        // console.log("listBanner: ", listBanner);
+        dispatch(setDataBanner(listBanner.data.content));
+      } catch (error) {
+        console.log("error: ", error);
+      }
+    })();
+  }, []);
 
   const SlickButtonFix = ({ currentSlide, slideCount, children, ...props }) => (
     <span {...props}>{children}</span>
@@ -37,7 +53,7 @@ export default function HomeCarousel(props) {
 
   return (
     <Carousel
-      autoplay
+      // autoplay
       arrows={true}
       prevArrow={
         <SlickButtonFix>

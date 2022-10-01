@@ -1,30 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  dataBanner: [
-    {
-      maBanner: 1,
-      maPhim: 1282,
-      hinhAnh: "https://movienew.cybersoft.edu.vn/hinhanh/ban-tay-diet-quy.png",
-    },
-    {
-      maBanner: 2,
-      maPhim: 1283,
-      hinhAnh: "https://movienew.cybersoft.edu.vn/hinhanh/lat-mat-48h.png",
-    },
-    {
-      maBanner: 3,
-      maPhim: 1284,
-      hinhAnh:
-        "https://movienew.cybersoft.edu.vn/hinhanh/cuoc-chien-sinh-tu.png",
-    },
-  ],
+  dataBanner: [],
 };
 
 const movieSlice = createSlice({
   name: "movieSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    setDataBanner: (state, action) => {
+      state.dataBanner = action.payload;
+    },
+  },
 });
+
+export const { setDataBanner } = movieSlice.actions;
 
 export default movieSlice.reducer;

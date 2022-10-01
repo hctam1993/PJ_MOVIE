@@ -9,4 +9,8 @@ export const movieService = {
     let uri = "/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP05";
     return https.get(uri);
   },
+  getListBanner: () => {
+    let uri = "/api/QuanLyPhim/LayDanhSachBanner";
+    return https.get(uri);
+  },
 };

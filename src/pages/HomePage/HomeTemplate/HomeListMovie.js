@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setLoadingOn, setLoadingOff } from "../../../redux/slice/spinnerSlice";
-import { movieService } from "../../../services/movieService";
+import { getDataListMovie } from "../../../redux/slice/movieSlice";
 import ItemMovies from "./ItemMovies";
 
 export default function HomeListMovie() {
-  const [movies, setMovies] = useState([]);
+  const { dataListMovie } = useSelector((state) => state.movieSlice);
   let dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setLoadingOn());
-    movieService
-      .getListMovie()
-      .then((res) => {
-        // console.log(res);
-        setMovies(res.data.content);
-        dispatch(setLoadingOff());
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch(setLoadingOff());
-      });
+    dispatch(getDataListMovie());
+    dispatch(setLoadingOff());
   }, []);
   let renderMovies = () => {
-    return movies.map((data, key) => {
+    return dataListMovie.map((data, key) => {
       return <ItemMovies data={data} key={key} />;
     });
   };

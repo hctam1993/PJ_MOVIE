@@ -3,31 +3,18 @@ import { Tabs } from "antd";
 import { movieService } from "../../../services/movieService";
 import TabPane from "antd/lib/tabs/TabPane";
 import HomeItemTabMovie from "./HomeItemTabMovie";
+import { useDispatch, useSelector } from "react-redux";
+import { getLichChieuTheoRap } from "../../../redux/slice/movieSlice";
 
 export default function HomeTabMovie() {
-  let [dataMovie, setDataMovie] = useState([]);
+  let { dataLichChieuTheoRap } = useSelector((state) => state.movieSlice);
+
+  let dispatch = useDispatch();
 
   useEffect(() => {
-    movieService
-      .getMovieTheater()
-      .then((res) => {
-        // console.log(res);
-        setDataMovie(res.data.content);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(getLichChieuTheoRap());
   }, []);
-  //   let renderMovieTheater = () => {
-  //     return dataMovie.map((heThongRap, index) => {
-  //       return (
-  //         <Tabs.TabPane
-  //           tab={<img className="w-16 h-16" src={heThongRap.logo} />}
-  //           key={heThongRap.maHeThongRap + index}
-  //         ></Tabs.TabPane>
-  //       );
-  //     });
-  //   };
+
   let itemsListCumRap = (heThongRap) => {
     return heThongRap.lstCumRap.map((cumRap, index) => {
       return {
@@ -52,7 +39,7 @@ export default function HomeTabMovie() {
     });
   };
 
-  let items = dataMovie.map((heThongRap, index) => {
+  let items = dataLichChieuTheoRap.map((heThongRap, index) => {
     return {
       label: <img className="w-16 h-16" src={heThongRap.logo} />,
       key: heThongRap.maHeThongRap + index,

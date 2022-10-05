@@ -32,10 +32,10 @@
   //border: solid 1px green;
 } */
 /* .multiRow .slick-slide {
-  margin: 10px 0;
+  margin: 0;
 } */
 /* .multiRow .slick-list {
-  margin: 0 -10px;
+  margin: 0  10px;
 } */
 /* .multiRow .ant-card-bordered .ant-card-cover {
   margin-top: 10px;
@@ -45,3 +45,9 @@
 .ant-card-body {
   margin-bottom: 10px;
 } */
+.slick-slide > div {
+  margin: 0 10px;
+}
+.slick-list {
+  margin: 0 -10px;
+}

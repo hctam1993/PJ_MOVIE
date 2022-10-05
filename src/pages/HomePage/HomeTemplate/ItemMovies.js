@@ -4,6 +4,7 @@ import { Card } from "antd";
 const { Meta } = Card;
 
 export default function ItemMovies({ data }) {
+  // console.log("data: ", data);
   return (
     <Card
       hoverable
@@ -18,7 +19,7 @@ export default function ItemMovies({ data }) {
     >
       <Meta
         title={<p className="text-red-500 truncate">{data.tenPhim}</p>}
-        description={data.trailer}
+        description={data.moTa}
       />
       <NavLink to={`/detail/${data.maPhim}`}>
         <button

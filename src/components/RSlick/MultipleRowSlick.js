@@ -33,7 +33,7 @@ export default function MultipleRowSlick() {
     className: "center variable-width",
     centerMode: true,
     infinite: true,
-    centerPadding: "60px",
+    centerPadding: "200px",
     slidesToShow: 3,
     speed: 500,
     rows: 1,
@@ -53,7 +53,12 @@ export default function MultipleRowSlick() {
   };
   return (
     <div className="multiRow">
-      <h2>Multiple Rows</h2>
+      <button className="bg-gray-500 text-white px-8 py-3 font-semibold rounded mr-2">
+        PHIM ĐANG CHIẾU
+      </button>{" "}
+      <button className="bg-gray-500 text-white px-8 py-3 font-semibold rounded mr-2">
+        PHIM SẮP CHIẾU
+      </button>
       <Slider {...settings}>
         {renderMovies()}
         {/* <div>

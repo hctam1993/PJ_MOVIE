@@ -31,3 +31,14 @@ body .slick-prev::before,
 body .slick-next::before {
   display: none;
 }
+.slick-slider {
+  max-width: 100vw;
+  width: 100%;
+  overflow: hidden !important;
+}
+.ant-carousel .slick-dots {
+  margin: 0;
+}
+.slick-dots li button:before {
+  display: none;
+}

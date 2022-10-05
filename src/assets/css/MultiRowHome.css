@@ -1,0 +1,47 @@
+.multiRow .slick-prev,
+.multiRow .slick-next,
+.multiRow .slick-prev:hover,
+.multiRow .slick-next:hover {
+  font-size: inherit;
+  color: currentColor;
+}
+
+.multiRow .slick-prev,
+.multiRow .slick-prev:hover {
+  left: 30px;
+  font-size: 40px;
+  z-index: 2;
+  color: red;
+  transition: 0.5s;
+}
+
+.multiRow .slick-next,
+.multiRow .slick-next:hover {
+  right: 30px;
+  font-size: 40px;
+  z-index: 2;
+  color: red;
+  transition: 0.5s;
+}
+.multiRow .slick-prev:hover,
+.multiRow .slick-next:hover {
+  opacity: 0.5;
+}
+/* .multiRow div {
+  background-color: yellow;
+  //border: solid 1px green;
+} */
+/* .multiRow .slick-slide {
+  margin: 10px 0;
+} */
+/* .multiRow .slick-list {
+  margin: 0 -10px;
+} */
+/* .multiRow .ant-card-bordered .ant-card-cover {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.ant-card-body {
+  margin-bottom: 10px;
+} */

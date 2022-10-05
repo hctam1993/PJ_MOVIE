@@ -43,21 +43,23 @@ export default function HomeCarousel(props) {
   };
 
   return (
-    <Carousel
-      // autoplay
-      arrows={true}
-      prevArrow={
-        <SlickButtonFix>
-          <LeftOutlined />
-        </SlickButtonFix>
-      }
-      nextArrow={
-        <SlickButtonFix>
-          <RightOutlined />
-        </SlickButtonFix>
-      }
-    >
-      {renderCarousel()}
-    </Carousel>
+    <section className="container">
+      <Carousel
+        autoplay
+        arrows={true}
+        prevArrow={
+          <SlickButtonFix>
+            <LeftOutlined />
+          </SlickButtonFix>
+        }
+        nextArrow={
+          <SlickButtonFix>
+            <RightOutlined />
+          </SlickButtonFix>
+        }
+      >
+        {renderCarousel()}
+      </Carousel>
+    </section>
   );
 }

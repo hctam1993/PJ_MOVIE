@@ -4,13 +4,27 @@ import { movieService } from "../../services/movieService";
 const initialState = {
   dataBanner: [],
   dataListMovie: [],
+  dataListMovieDefault: [],
   dataLichChieuTheoRap: [],
 };
 
 const movieSlice = createSlice({
   name: "movieSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    setPhimDangChieu: (state) => {
+      // console.log("action: ", action);
+      state.dataListMovie = state.dataListMovieDefault.filter(
+        (item) => item.dangChieu
+      );
+    },
+    setPhimSapChieu: (state, action) => {
+      // console.log("action: ", action);
+      state.dataListMovie = state.dataListMovieDefault.filter(
+        (item) => item.sapChieu
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getDataBanner.fulfilled, (state, action) => {
       // console.log(action.payload);
@@ -18,6 +32,7 @@ const movieSlice = createSlice({
     });
     builder.addCase(getDataListMovie.fulfilled, (state, action) => {
       state.dataListMovie = action.payload;
+      state.dataListMovieDefault = state.dataListMovie;
       // console.log("action.payload: ", action.payload);
     });
     builder.addCase(getLichChieuTheoRap.fulfilled, (state, action) => {
@@ -52,6 +67,6 @@ export const getLichChieuTheoRap = createAsyncThunk(
   }
 );
 
-// export const { setDataBanner } = movieSlice.actions;
+export const { setPhimDangChieu, setPhimSapChieu } = movieSlice.actions;
 
 export default movieSlice.reducer;

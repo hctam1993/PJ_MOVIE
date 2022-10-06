@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 import Slider from "react-slick";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoadingOn, setLoadingOff } from "../../redux/slice/spinnerSlice";
-import { getDataListMovie } from "../../redux/slice/movieSlice";
+import {
+  getDataListMovie,
+  setPhimDangChieu,
+  setPhimSapChieu,
+} from "../../redux/slice/movieSlice";
 import ItemMovies from "../../pages/HomePage/HomeTemplate/ItemMovies";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import "../../assets/css/MultiRowHome.css";
@@ -10,7 +14,7 @@ import styleSlick from "./MultipleRowSlick.module.css";
 
 export default function MultipleRowSlick() {
   const { dataListMovie } = useSelector((state) => state.movieSlice);
-  // console.log("dataListMovie: ", dataListMovie);
+
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(setLoadingOn());
@@ -31,10 +35,10 @@ export default function MultipleRowSlick() {
   );
   const settings = {
     className: "center variable-width",
-    centerMode: true,
+    centerMode: false,
     infinite: true,
     centerPadding: "200px",
-    slidesToShow: 3,
+    slidesToShow: 4,
     speed: 500,
     rows: 1,
     slidesPerRow: 2,
@@ -53,10 +57,20 @@ export default function MultipleRowSlick() {
   };
   return (
     <div className="multiRow">
-      <button className="bg-gray-500 text-white px-8 py-3 font-semibold rounded mr-2">
+      <button
+        className="bg-gray-500 hover:bg-gray-600 focus:bg-gray-800 text-white px-8 py-3 font-semibold rounded mr-2"
+        onClick={() => {
+          dispatch(setPhimDangChieu());
+        }}
+      >
         PHIM ĐANG CHIẾU
       </button>{" "}
-      <button className="bg-gray-500 text-white px-8 py-3 font-semibold rounded mr-2">
+      <button
+        className="bg-gray-500 hover:bg-gray-600 focus:bg-gray-800 text-white px-8 py-3 font-semibold rounded mr-2"
+        onClick={() => {
+          dispatch(setPhimSapChieu());
+        }}
+      >
         PHIM SẮP CHIẾU
       </button>
       <Slider {...settings}>

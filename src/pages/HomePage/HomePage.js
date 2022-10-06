@@ -2,7 +2,6 @@ import React from "react";
 import MultipleRowSlick from "../../components/RSlick/MultipleRowSlick";
 import HomeCarousel from "../../pages/HomePage/HomeTemplate/HomeCarousel";
 import HomeTabMovie from "./HomeTabMovies/HomeTabMovie";
-import HomeListMovie from "./HomeTemplate/HomeListMovie";
 
 export default function HomePage() {
   return (
@@ -10,7 +9,6 @@ export default function HomePage() {
       <div className="container mx-auto">
         <HomeCarousel />
         <MultipleRowSlick />
-        {/* <HomeListMovie /> */}
         <HomeTabMovie />
       </div>
     </section>

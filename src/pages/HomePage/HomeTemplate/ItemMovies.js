@@ -18,8 +18,9 @@ export default function ItemMovies({ data }) {
       }
     >
       <Meta
-        title={<p className="text-red-500 truncate">{data.tenPhim}</p>}
+        title={<p className="text-red-500 text-center">{data.tenPhim}</p>}
         description={data.moTa}
+        className="truncate"
       />
       <NavLink to={`/detail/${data.maPhim}`}>
         <button

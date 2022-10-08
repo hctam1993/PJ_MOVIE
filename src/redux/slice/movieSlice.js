@@ -4,7 +4,7 @@ import { movieService } from "../../services/movieService";
 
 const initialState = {
   dataBanner: [],
-  isLoading: true,
+  isLoading: false,
   dataListMovie: [],
   dataListMovieDefault: [],
   dataLichChieuTheoRap: [],

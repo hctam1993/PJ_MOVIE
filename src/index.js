@@ -9,14 +9,12 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./redux/slice/userSlice";
-import spinnerSlice from "./redux/slice/spinnerSlice";
 import movieSlice from "./redux/slice/movieSlice";
 import { Provider } from "react-redux";
 
 const store = configureStore({
   reducer: {
     userSlice,
-    spinnerSlice,
     movieSlice,
   },
   devTools: true,

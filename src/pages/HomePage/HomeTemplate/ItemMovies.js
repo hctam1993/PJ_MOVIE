@@ -18,13 +18,12 @@ export default function ItemMovies({ data }) {
       }
     >
       <Meta
-        title={<p className="text-red-500 text-center">{data.tenPhim}</p>}
-        description={data.moTa}
-        className="truncate"
+        title={<p className="text-red-600 text-center">{data.tenPhim}</p>}
+        description={<p className="truncate">{data.moTa}</p>}
       />
       <NavLink to={`/detail/${data.maPhim}`}>
         <button
-          className="w-full py-2 text-center bg-red-500 text-white mt-5 rounded transition
+          className="w-full py-2 text-center bg-red-600 text-white mt-5 rounded transition
    duration-300 hover:bg-black"
         >
           Xem chi tiết

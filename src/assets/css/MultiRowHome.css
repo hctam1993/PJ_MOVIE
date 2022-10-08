@@ -42,12 +42,12 @@
   margin-right: 10px;
   margin-left: 10px;
 } */
-.ant-card-body {
+.multiRow .ant-card-body {
   padding: 10px;
 }
-.slick-slide > div {
+.multiRow .slick-slide > div {
   margin: 0 10px;
 }
-.slick-list {
+.multiRow .slick-list {
   margin: 0 -10px;
 }

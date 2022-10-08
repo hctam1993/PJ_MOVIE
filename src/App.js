@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import News from "./pages/News/News";
 import Contact from "./pages/Contact/Contact";
 import Spinner from "./components/Spinner/Spinner";
+import Detail from "./pages/Detail/Detail";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Layout Component={HomePage} />} />
           <Route path="/news" element={<Layout Component={News} />} />
           <Route path="/contact" element={<Layout Component={Contact} />} />
+          <Route path="/detail/:id" element={<Layout Component={Detail} />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,8 +1,10 @@
+import { StarTwoTone } from "@ant-design/icons";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { movieService } from "../../services/movieService";
 
 const initialState = {
   dataBanner: [],
+  isLoading: true,
   dataListMovie: [],
   dataListMovieDefault: [],
   dataLichChieuTheoRap: [],
@@ -18,7 +20,7 @@ const movieSlice = createSlice({
         (item) => item.dangChieu
       );
     },
-    setPhimSapChieu: (state, action) => {
+    setPhimSapChieu: (state) => {
       // console.log("action: ", action);
       state.dataListMovie = state.dataListMovieDefault.filter(
         (item) => item.sapChieu
@@ -26,9 +28,13 @@ const movieSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(getDataBanner.pending, (state) => {
+      state.isLoading = true;
+    });
     builder.addCase(getDataBanner.fulfilled, (state, action) => {
       // console.log(action.payload);
       state.dataBanner = action.payload;
+      state.isLoading = false;
     });
     builder.addCase(getDataListMovie.fulfilled, (state, action) => {
       state.dataListMovie = action.payload;

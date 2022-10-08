@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Slider from "react-slick";
 import { useDispatch, useSelector } from "react-redux";
-import { setLoadingOn, setLoadingOff } from "../../redux/slice/spinnerSlice";
+
 import {
   getDataListMovie,
   setPhimDangChieu,
@@ -17,9 +17,7 @@ export default function MultipleRowSlick() {
 
   let dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setLoadingOn());
     dispatch(getDataListMovie());
-    dispatch(setLoadingOff());
   }, []);
   let renderMovies = () => {
     return dataListMovie.map((data, key) => {

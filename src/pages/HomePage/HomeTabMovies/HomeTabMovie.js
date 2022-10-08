@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Tabs } from "antd";
-import { movieService } from "../../../services/movieService";
-import TabPane from "antd/lib/tabs/TabPane";
 import HomeItemTabMovie from "./HomeItemTabMovie";
 import { useDispatch, useSelector } from "react-redux";
 import { getLichChieuTheoRap } from "../../../redux/slice/movieSlice";
+import "../../../assets/css/TabHome.css";
 
 export default function HomeTabMovie() {
   let { dataLichChieuTheoRap } = useSelector((state) => state.movieSlice);
@@ -20,15 +19,15 @@ export default function HomeTabMovie() {
       return {
         label: (
           <div className="w-48 text-left">
-            <p className="text-gray=700 truncate">{cumRap.tenCumRap}</p>
-            <p className="text-gray=700 truncate">{cumRap.diaChi}</p>
+            <p className="text-red-700 truncate">{cumRap.tenCumRap}</p>
+            <p className="text-green-700 truncate">{cumRap.diaChi}</p>
           </div>
         ),
         key: cumRap.maCumRap + index,
         children: (
           <div
             style={{ height: 500, overflowY: "scroll" }}
-            className="h-32 scrollbar scrollbar-thumb-custom scrollbar-track-custom-light overflow-y-scroll"
+            className="h-32 scrollbar scrollbar-thumb-green-600 scrollbar-track-green-300 overflow-y-scroll hover:scrollbar-thumb-red-500"
           >
             {cumRap.danhSachPhim.map((phim, index) => {
               return <HomeItemTabMovie data={phim} key={phim.maPhim + index} />;

@@ -4,6 +4,7 @@ import "../../../assets/css/CarouselHome.css";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataBanner } from "../../../redux/slice/movieSlice";
+
 const contentStyle = {
   height: "600px",
   color: "#fff",
@@ -45,7 +46,7 @@ export default function HomeCarousel(props) {
   return (
     <section className="container">
       <Carousel
-        autoplay
+        // autoplay
         arrows={true}
         prevArrow={
           <SlickButtonFix>

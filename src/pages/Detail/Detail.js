@@ -41,7 +41,7 @@ export default function Detail() {
             </div>
           </div>
         </div>
-        <div className="container mx-auto mt-10 pl-10">
+        <div className="container mx-auto mt-10 pl-20">
           <Tabs
             tabPosition={"left"}
             items={new Array(3).fill(null).map((_, i) => {

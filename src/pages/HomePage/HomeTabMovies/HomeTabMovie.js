@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Tabs } from "antd";
 import HomeItemTabMovie from "./HomeItemTabMovie";
 import { useDispatch, useSelector } from "react-redux";
-import { getLichChieuTheoRap } from "../../../redux/slice/movieSlice";
+import { getLichChieuTheoRap } from "../../../redux/slice/theaterSlice";
 import "../../../assets/css/TabHome.css";
 
 export default function HomeTabMovie() {
-  let { dataLichChieuTheoRap } = useSelector((state) => state.movieSlice);
+  let { dataLichChieuTheoRap } = useSelector((state) => state.theaterSlice);
 
   let dispatch = useDispatch();
 

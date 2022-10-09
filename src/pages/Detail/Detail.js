@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CustomCard } from "@tsamantanis/react-glassmorphism";
 import "@tsamantanis/react-glassmorphism/dist/index.css";
 import "../../assets/css/CircleRating.css";
 import { Tabs } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { getLichChieuTheoPhim } from "../../redux/slice/theaterSlice";
+import { useParams } from "react-router-dom";
 
 export default function Detail() {
+  const dataLichChieuTheoPhim = useSelector(
+    (state) => state.theaterSlice.dataLichChieuTheoPhim
+  );
+  let dispatch = useDispatch();
+  const { id } = useParams();
+  console.log("id: ", id);
+  useEffect(() => {
+    dispatch(getLichChieuTheoPhim(id));
+  }, []);
+  console.log("dataLichChieuTheoPhim: ", dataLichChieuTheoPhim);
   return (
     <div
       style={{
@@ -25,7 +38,7 @@ export default function Detail() {
               <div>
                 <img src="https://picsum.photos/200/350" alt="123" />
               </div>
-              <div>
+              <div className="ml-5">
                 <p>Ten phim</p>
                 <p>Mota</p>
               </div>

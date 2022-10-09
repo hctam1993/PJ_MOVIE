@@ -10,12 +10,14 @@ import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./redux/slice/userSlice";
 import movieSlice from "./redux/slice/movieSlice";
+import theaterSlice from "./redux/slice/theaterSlice";
 import { Provider } from "react-redux";
 
 const store = configureStore({
   reducer: {
     userSlice,
     movieSlice,
+    theaterSlice,
   },
   devTools: true,
 });

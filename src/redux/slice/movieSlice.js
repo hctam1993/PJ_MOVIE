@@ -7,7 +7,6 @@ const initialState = {
   isLoading: false,
   dataListMovie: [],
   dataListMovieDefault: [],
-  dataLichChieuTheoRap: [],
 };
 
 const movieSlice = createSlice({
@@ -41,9 +40,6 @@ const movieSlice = createSlice({
       state.dataListMovieDefault = state.dataListMovie;
       // console.log("action.payload: ", action.payload);
     });
-    builder.addCase(getLichChieuTheoRap.fulfilled, (state, action) => {
-      state.dataLichChieuTheoRap = action.payload;
-    });
   },
 });
 
@@ -60,15 +56,6 @@ export const getDataListMovie = createAsyncThunk(
   "movie/getDataListMovie",
   async () => {
     const res = await movieService.getListMovie();
-    return res.data.content;
-  }
-);
-
-export const getLichChieuTheoRap = createAsyncThunk(
-  "movie/getLichChieuTheoRap",
-  async () => {
-    const res = await movieService.getMovieTheater();
-    // console.log("res: ", res);
     return res.data.content;
   }
 );

@@ -6,6 +6,7 @@ import { Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getLichChieuTheoPhim } from "../../redux/slice/theaterSlice";
 import { useParams } from "react-router-dom";
+import moment from "moment";
 
 export default function Detail() {
   const dataLichChieuTheoPhim = useSelector(
@@ -13,16 +14,19 @@ export default function Detail() {
   );
   let dispatch = useDispatch();
   const { id } = useParams();
-  console.log("id: ", id);
+  // console.log("id: ", id);
   useEffect(() => {
     dispatch(getLichChieuTheoPhim(id));
+    window.scrollTo(0, 0);
   }, []);
   console.log("dataLichChieuTheoPhim: ", dataLichChieuTheoPhim);
   return (
     <div
       style={{
-        backgroundImage: "url(https://picsum.photos/1000)",
+        backgroundImage: `url(${dataLichChieuTheoPhim.hinhAnh})`,
         minHeight: "100vh",
+        backgroundSize: "100%",
+        backgroundPosition: "center",
       }}
     >
       <CustomCard
@@ -33,20 +37,28 @@ export default function Detail() {
         borderRadius={0} // default border radius value is 10px
       >
         <div className="grid grid-cols-12">
-          <div className="col-span-4 col-start-2">
-            <div className="grid grid-cols-2">
-              <div>
-                <img src="https://picsum.photos/200/350" alt="123" />
+          <div className="col-span-5 col-start-2">
+            <div className="grid grid-cols-3">
+              <div className="col-span-1">
+                <img
+                  src={dataLichChieuTheoPhim.hinhAnh}
+                  alt={dataLichChieuTheoPhim.biDanh}
+                />
               </div>
-              <div className="ml-5">
-                <p>Ten phim</p>
-                <p>Mota</p>
+              <div className="ml-5 col-span-2">
+                <p className="">
+                  {moment(dataLichChieuTheoPhim.ngayKhoiChieu).format(
+                    "DD-MM-YYYY"
+                  )}
+                </p>
+                <p className="text-4xl mb-4">{dataLichChieuTheoPhim.tenPhim}</p>
+                <p className="">{dataLichChieuTheoPhim.moTa}</p>
               </div>
             </div>
           </div>
           <div className="col-span-4 col-start-8">
             <div className="c100 p50 big">
-              <span>50%</span>
+              <span>{dataLichChieuTheoPhim.danhGia * 10}</span>
               <div className="slice">
                 <div className="bar"></div>
                 <div className="fill"></div>

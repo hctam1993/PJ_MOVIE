@@ -14,8 +14,7 @@ const theaterSlice = createSlice({
     builder.addCase(getLichChieuTheoRap.fulfilled, (state, action) => {
       state.dataLichChieuTheoRap = action.payload;
     });
-  },
-  extraReducers: (builder) => {
+
     builder.addCase(getLichChieuTheoPhim.fulfilled, (state, action) => {
       state.dataLichChieuTheoPhim = action.payload;
     });

@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function News() {
-  return <div>News</div>;
+  return <div className="h-screen bg-red-500">News</div>;
 }

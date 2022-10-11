@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { CustomCard } from "@tsamantanis/react-glassmorphism";
 import "@tsamantanis/react-glassmorphism/dist/index.css";
 import "../../assets/css/CircleRating.css";
@@ -7,25 +7,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { getLichChieuTheoPhim } from "../../redux/slice/theaterSlice";
 import { useParams } from "react-router-dom";
 import moment from "moment";
+import { Rate } from "antd";
+
+const desc = ["Dở tệ", "Tệ", "Trung bình", "Tốt", "Tuyệt vời"];
 
 export default function Detail() {
-  const dataLichChieuTheoPhim = useSelector(
-    (state) => state.theaterSlice.dataLichChieuTheoPhim
-  );
+  const { dataLichChieuTheoPhim } = useSelector((state) => state.theaterSlice);
+
   let dispatch = useDispatch();
   const { id } = useParams();
   // console.log("id: ", id);
   useEffect(() => {
     dispatch(getLichChieuTheoPhim(id));
+
     window.scrollTo(0, 0);
   }, []);
-  console.log("dataLichChieuTheoPhim: ", dataLichChieuTheoPhim);
+
+  console.log("dataHTRC: ", dataLichChieuTheoPhim);
+
+  let renderHeThongRap = () => {};
+  renderHeThongRap();
   return (
     <div
       style={{
         backgroundImage: `url(${dataLichChieuTheoPhim.hinhAnh})`,
         minHeight: "100vh",
-        backgroundSize: "100%",
+        backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
@@ -33,7 +40,7 @@ export default function Detail() {
         style={{ paddingTop: 150, minHeight: "100vh" }}
         effectColor="#fff" // required
         color="#fff" // default color is white
-        blur={80} // default blur value is 10px
+        blur={10} // default blur value is 10px
         borderRadius={0} // default border radius value is 10px
       >
         <div className="grid grid-cols-12">
@@ -57,27 +64,32 @@ export default function Detail() {
             </div>
           </div>
           <div className="col-span-4 col-start-8">
-            <div className="c100 p50 big">
+            <div
+              className={
+                dataLichChieuTheoPhim.danhGia * 10 > 70
+                  ? `c100 p${dataLichChieuTheoPhim.danhGia * 10} green big`
+                  : dataLichChieuTheoPhim.danhGia * 10 < 50
+                  ? `c100 p${dataLichChieuTheoPhim.danhGia * 10} orange big`
+                  : `c100 p${dataLichChieuTheoPhim.danhGia * 10} big`
+              }
+            >
               <span>{dataLichChieuTheoPhim.danhGia * 10}</span>
               <div className="slice">
                 <div className="bar"></div>
                 <div className="fill"></div>
               </div>
+              <div className="" style={{ marginLeft: "24%" }}>
+                <Rate
+                  allowHalf
+                  value={dataLichChieuTheoPhim.danhGia / 2}
+                  disabled
+                />
+              </div>
             </div>
           </div>
         </div>
         <div className="container mx-auto mt-10 pl-20">
-          <Tabs
-            tabPosition={"left"}
-            items={new Array(3).fill(null).map((_, i) => {
-              const id = String(i + 1);
-              return {
-                label: `Tab ${id}`,
-                key: id,
-                children: `Content of Tab ${id}`,
-              };
-            })}
-          />
+          {/* <Tabs tabPosition={"left"} items={renderHeThongRap()} /> */}
         </div>
       </CustomCard>
     </div>

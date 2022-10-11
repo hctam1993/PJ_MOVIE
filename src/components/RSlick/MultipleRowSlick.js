@@ -20,10 +20,10 @@ export default function MultipleRowSlick() {
     dispatch(getDataListMovie());
   }, []);
   let renderMovies = () => {
-    return dataListMovie.map((data, key) => {
+    return dataListMovie.map((data, index) => {
       return (
-        <div className={`${styleSlick["width-item"]}`}>
-          <ItemMovies data={data} key={key} />
+        <div className={`${styleSlick["width-item"]}`} key={index}>
+          <ItemMovies data={data} />
         </div>
       );
     });

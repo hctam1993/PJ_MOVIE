@@ -54,74 +54,26 @@ export default function MultipleRowSlick() {
     ),
   };
   return (
-    <div className="multiRow">
-      <button
-        className="bg-gray-500 hover:bg-gray-600 focus:bg-gray-800 text-white px-8 py-3 font-semibold rounded mr-2"
-        onClick={() => {
-          dispatch(setPhimDangChieu());
-        }}
-      >
-        PHIM ĐANG CHIẾU
-      </button>{" "}
-      <button
-        className="bg-gray-500 hover:bg-gray-600 focus:bg-gray-800 text-white px-8 py-3 font-semibold rounded mr-2"
-        onClick={() => {
-          dispatch(setPhimSapChieu());
-        }}
-      >
-        PHIM SẮP CHIẾU
-      </button>
-      <Slider {...settings}>
-        {renderMovies()}
-        {/* <div>
-          <h3>1</h3>
-        </div>
-        <div>
-          <h3>2</h3>
-        </div>
-        <div>
-          <h3>3</h3>
-        </div>
-        <div>
-          <h3>4</h3>
-        </div>
-        <div>
-          <h3>5</h3>
-        </div>
-        <div>
-          <h3>6</h3>
-        </div>
-        <div>
-          <h3>7</h3>
-        </div>
-        <div>
-          <h3>8</h3>
-        </div>
-        <div>
-          <h3>9</h3>
-        </div>
-        <div>
-          <h3>10</h3>
-        </div>
-        <div>
-          <h3>11</h3>
-        </div>
-        <div>
-          <h3>12</h3>
-        </div>
-        <div>
-          <h3>13</h3>
-        </div>
-        <div>
-          <h3>14</h3>
-        </div>
-        <div>
-          <h3>15</h3>
-        </div>
-        <div>
-          <h3>16</h3>
-        </div> */}
-      </Slider>
+    <div className="multiRow my-10 w-11/12 mx-auto bg-gray-200">
+      <div className="mb-4">
+        <button
+          className="bg-red-500 hover:bg-red-600 focus:bg-red-800 text-white px-8 py-3 font-semibold rounded mr-2"
+          onClick={() => {
+            dispatch(setPhimDangChieu());
+          }}
+        >
+          PHIM ĐANG CHIẾU
+        </button>{" "}
+        <button
+          className="bg-red-500 hover:bg-red-600 focus:bg-red-800 text-white px-8 py-3 font-semibold rounded mr-2"
+          onClick={() => {
+            dispatch(setPhimSapChieu());
+          }}
+        >
+          PHIM SẮP CHIẾU
+        </button>
+      </div>
+      <Slider {...settings}>{renderMovies()}</Slider>
     </div>
   );
 }

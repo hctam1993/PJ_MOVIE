@@ -4,6 +4,7 @@ import { theaterService } from "../../services/theaterService";
 const initialState = {
   dataLichChieuTheoRap: [],
   dataLichChieuTheoPhim: [],
+  heThongRapChieu: [],
 };
 
 const theaterSlice = createSlice({
@@ -17,6 +18,7 @@ const theaterSlice = createSlice({
 
     builder.addCase(getLichChieuTheoPhim.fulfilled, (state, action) => {
       state.dataLichChieuTheoPhim = action.payload;
+      state.heThongRapChieu = action.payload.heThongRapChieu;
     });
   },
 });

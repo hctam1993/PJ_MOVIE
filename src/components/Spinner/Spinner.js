@@ -4,7 +4,7 @@ import { PacmanLoader } from "react-spinners";
 
 export default function Spinner() {
   let { isLoading } = useSelector((state) => state.movieSlice);
-  console.log("isLoading: ", isLoading);
+  // console.log("isLoading: ", isLoading);
 
   return isLoading ? (
     <div className="h-screen w-screen fixed top-0 left-0 bg-black flex justify-center items-center z-50">

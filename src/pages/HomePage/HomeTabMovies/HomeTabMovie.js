@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Tabs } from "antd";
 import HomeItemTabMovie from "./HomeItemTabMovie";
 import { useDispatch, useSelector } from "react-redux";
@@ -53,7 +53,7 @@ export default function HomeTabMovie() {
   });
 
   return (
-    <div>
+    <div className="w-11/12 mx-auto bg-gray-200">
       <Tabs
         style={{ height: 500 }}
         defaultActiveKey="1"

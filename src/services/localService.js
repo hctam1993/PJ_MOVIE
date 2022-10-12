@@ -12,7 +12,7 @@ export const localService = {
       if (jsonData) {
         JSON.parse(jsonData);
       } else {
-        null;
+        return null;
       }
     },
     remove: () => {

@@ -5,28 +5,71 @@ import "../../assets/css/CircleRating.css";
 import { Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getLichChieuTheoPhim } from "../../redux/slice/theaterSlice";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import moment from "moment";
 import { Rate } from "antd";
 
-const desc = ["Dở tệ", "Tệ", "Trung bình", "Tốt", "Tuyệt vời"];
-
 export default function Detail() {
-  const { dataLichChieuTheoPhim } = useSelector((state) => state.theaterSlice);
+  const { dataLichChieuTheoPhim, heThongRapChieu } = useSelector(
+    (state) => state.theaterSlice
+  );
+
+  // console.log("dataLichChieuTheoPhim: ", dataLichChieuTheoPhim);
+  // console.log("heThongRapChieu: ", heThongRapChieu);
 
   let dispatch = useDispatch();
   const { id } = useParams();
-  // console.log("id: ", id);
+
   useEffect(() => {
     dispatch(getLichChieuTheoPhim(id));
 
     window.scrollTo(0, 0);
   }, []);
 
-  console.log("dataHTRC: ", dataLichChieuTheoPhim);
+  let itemsCumRap = (cumRapChieu) => {
+    return cumRapChieu.map((cumRap, index) => {
+      // console.log("cumRap: ", cumRap);
+      return {
+        label: (
+          <div className="w-48 text-left">
+            <p className="text-red-700 truncate stroke-white">
+              {cumRap.tenCumRap}
+            </p>
+            <p className="text-green-700 truncate">{cumRap.diaChi}</p>
+          </div>
+        ),
+        key: cumRap.maCumRap + index,
+        children: cumRap.lichChieuPhim.slice(0, 19).map((lichChieu) => {
+          return (
+            <NavLink to="/" key={lichChieu.maLichChieu}>
+              <button
+                className="px-5 py-2 bg-red-500 text-white mr-2 mb-2 rounded hover:bg-red-700 transition"
+                style={{ minWidth: 150 }}
+              >
+                {moment(lichChieu.ngayChieuGioChieu).format("DD-MM-YYYY h:mm")}
+              </button>
+            </NavLink>
+          );
+        }),
+      };
+    });
+  };
 
-  let renderHeThongRap = () => {};
-  renderHeThongRap();
+  let renderHeThongRap = heThongRapChieu.map((heThongRap) => {
+    return {
+      label: <img className="w-16 h-16" src={heThongRap.logo} />,
+      key: heThongRap.maHeThongRap,
+      children: (
+        <Tabs
+          tabPosition="left"
+          style={{ maxHeight: 500, overflowY: "scroll" }}
+          className="h-48 scrollbar scrollbar-thumb-green-600 scrollbar-track-green-300 overflow-y-scroll hover:scrollbar-thumb-red-500"
+          items={itemsCumRap(heThongRap.cumRapChieu)}
+        ></Tabs>
+      ),
+    };
+  });
+
   return (
     <div
       style={{
@@ -89,7 +132,7 @@ export default function Detail() {
           </div>
         </div>
         <div className="container mx-auto mt-10 pl-20">
-          {/* <Tabs tabPosition={"left"} items={renderHeThongRap()} /> */}
+          <Tabs tabPosition={"left"} items={renderHeThongRap} />
         </div>
       </CustomCard>
     </div>

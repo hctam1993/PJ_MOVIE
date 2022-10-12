@@ -7,6 +7,11 @@ import News from "./pages/News/News";
 import Contact from "./pages/Contact/Contact";
 import Spinner from "./components/Spinner/Spinner";
 import Detail from "./pages/Detail/Detail";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import Register from "./pages/Register/Register";
+import { Suspense, lazy } from "react";
+
+const DetailComponent = lazy(() => import("./pages/Detail/Detail"));
 
 function App() {
   return (
@@ -17,7 +22,18 @@ function App() {
           <Route path="/" element={<Layout Component={HomePage} />} />
           <Route path="/news" element={<Layout Component={News} />} />
           <Route path="/contact" element={<Layout Component={Contact} />} />
-          <Route path="/detail/:id" element={<Layout Component={Detail} />} />
+
+          <Route
+            path="/detail/:id"
+            element={
+              <Suspense fallback={<h1>LOADING...</h1>}>
+                <Layout Component={DetailComponent} />
+              </Suspense>
+            }
+          />
+
+          <Route path="/login" element={<Layout Component={LoginPage} />} />
+          <Route path="/register" element={<Layout Component={Register} />} />
         </Routes>
       </BrowserRouter>
     </div>

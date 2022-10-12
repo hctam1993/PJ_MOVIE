@@ -8,8 +8,9 @@
 
 .multiRow .slick-prev,
 .multiRow .slick-prev:hover {
-  left: 30px;
-  font-size: 40px;
+  left: 0px;
+  bottom: 80px;
+  font-size: 60px;
   z-index: 2;
   color: red;
   transition: 0.5s;
@@ -18,7 +19,7 @@
 .multiRow .slick-next,
 .multiRow .slick-next:hover {
   right: 30px;
-  font-size: 40px;
+  font-size: 60px;
   z-index: 2;
   color: red;
   transition: 0.5s;
@@ -27,21 +28,6 @@
 .multiRow .slick-next:hover {
   opacity: 0.5;
 }
-/* .multiRow div {
-  background-color: yellow;
-  //border: solid 1px green;
-} */
-/* .multiRow .slick-slide {
-  margin: 0;
-} */
-/* .multiRow .slick-list {
-  margin: 0  10px;
-} */
-/* .multiRow .ant-card-bordered .ant-card-cover {
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-left: 10px;
-} */
 .multiRow .ant-card-body {
   padding: 10px;
 }
@@ -50,4 +36,38 @@
 }
 .multiRow .slick-list {
   margin: 0 -10px;
+}
+.cardBG {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  background: linear-gradient(to top, #000, transparent 100%);
+  transition: all 0.5s;
+  visibility: hidden;
+  border-radius: 4px;
+}
+.showTrailer {
+  position: relative;
+}
+.showTrailer:hover .cardBG {
+  opacity: 1;
+  visibility: visible;
+}
+.buttonTrailer {
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  border: none;
+  height: 60px;
+  z-index: 3;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: transparent;
+}
+.buttonTrailer:hover {
+  opacity: 0.7;
+  background: transparent;
 }

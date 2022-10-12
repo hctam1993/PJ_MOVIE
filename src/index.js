@@ -5,12 +5,14 @@ import "antd/dist/antd.min.css";
 import "./assets/css/font.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "../node_modules/react-modal-video/scss/modal-video.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./redux/slice/userSlice";
 import movieSlice from "./redux/slice/movieSlice";
 import theaterSlice from "./redux/slice/theaterSlice";
+import trailerSlice from "./redux/slice/trailerSlice";
 import { Provider } from "react-redux";
 
 const store = configureStore({
@@ -18,6 +20,7 @@ const store = configureStore({
     userSlice,
     movieSlice,
     theaterSlice,
+    trailerSlice,
   },
   devTools: true,
 });

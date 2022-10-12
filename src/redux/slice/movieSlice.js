@@ -1,4 +1,3 @@
-import { StarTwoTone } from "@ant-design/icons";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { movieService } from "../../services/movieService";
 

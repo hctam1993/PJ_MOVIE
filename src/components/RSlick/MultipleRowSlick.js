@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,6 +11,7 @@ import ItemMovies from "../../pages/HomePage/HomeTemplate/ItemMovies";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import "../../assets/css/MultiRowHome.css";
 import styleSlick from "./MultipleRowSlick.module.css";
+import Trailer from "../Trailer/Trailer";
 
 export default function MultipleRowSlick() {
   const { dataListMovie } = useSelector((state) => state.movieSlice);
@@ -74,6 +75,7 @@ export default function MultipleRowSlick() {
         </button>
       </div>
       <Slider {...settings}>{renderMovies()}</Slider>
+      <Trailer />
     </div>
   );
 }

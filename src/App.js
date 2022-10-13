@@ -13,6 +13,7 @@ import { Suspense, lazy } from "react";
 import SecureView from "./components/HOC/SecureView";
 import Management from "./pages/Management/Management";
 import User from "./pages/Management/User/User";
+import EditUser from "./pages/Management/User/EditUser";
 
 const DetailComponent = lazy(() => import("./pages/Detail/Detail"));
 
@@ -50,6 +51,14 @@ function App() {
             element={
               <SecureView>
                 <Management Component={User} />
+              </SecureView>
+            }
+          />
+          <Route
+            path="/management/user/edit/:id"
+            element={
+              <SecureView>
+                <Management Component={EditUser} />
               </SecureView>
             }
           />

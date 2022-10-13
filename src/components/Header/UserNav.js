@@ -15,7 +15,7 @@ export default function UserNav() {
     if (user) {
       return (
         <>
-          <span>{user.hoTen}</span>
+          <span className="text-amber-500">{user.hoTen}</span>
           <button
             onClick={handleLogout}
             className="border rounded border-red-500  text-red-500 px-7 py-2 font-semibold ml-2"

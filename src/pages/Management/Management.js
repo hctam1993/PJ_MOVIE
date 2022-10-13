@@ -68,7 +68,7 @@ export default function Management({ Component }) {
             padding: 0,
           }}
         /> */}
-          <div className="flex justify-end mx-2 my-2 site-layout-background">
+          <div className="flex justify-end  bg-slate-900 h-12">
             <UserNav />
           </div>
 

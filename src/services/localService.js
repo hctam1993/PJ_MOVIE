@@ -10,7 +10,7 @@ export const localService = {
       let jsonData = localStorage.getItem(USER);
 
       if (jsonData) {
-        JSON.parse(jsonData);
+        return JSON.parse(jsonData);
       } else {
         return null;
       }

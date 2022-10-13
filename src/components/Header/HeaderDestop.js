@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import UserNav from "./UserNav";
 
 export default function HeaderDestop() {
   const navLinkClass = ({ isActive }) => {
@@ -34,20 +35,7 @@ export default function HeaderDestop() {
             </NavLink>
           </li>
         </ul>
-        <div className="items-center flex-shrink-0 hidden lg:flex space-x-2">
-          <NavLink to="/login">
-            {" "}
-            <button className="self-center px-8 py-3 font-semibold rounded bg-red-500 hover:bg-red-700 text-white">
-              Đăng nhập
-            </button>
-          </NavLink>
-          <NavLink to="/register">
-            {" "}
-            <button className="self-center px-8 py-3 font-semibold rounded bg-red-500 hover:bg-red-700 text-white">
-              Đăng ký
-            </button>
-          </NavLink>
-        </div>
+        <UserNav />
       </div>
     </header>
   );

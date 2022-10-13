@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { localService } from "../../services/localService";
 
 const initialState = {
   isLogin: true,
-  user: null,
+  user: localService.user.get(),
 };
 
 const userSlice = createSlice({

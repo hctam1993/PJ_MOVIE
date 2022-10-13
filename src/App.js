@@ -10,6 +10,8 @@ import Detail from "./pages/Detail/Detail";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import Register from "./pages/Register/Register";
 import { Suspense, lazy } from "react";
+import SecureView from "./components/HOC/SecureView";
+import Management from "./pages/Management/Management";
 
 const DetailComponent = lazy(() => import("./pages/Detail/Detail"));
 
@@ -34,6 +36,14 @@ function App() {
 
           <Route path="/login" element={<Layout Component={LoginPage} />} />
           <Route path="/register" element={<Layout Component={Register} />} />
+          <Route
+            path="/management"
+            element={
+              <SecureView>
+                <Management />
+              </SecureView>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

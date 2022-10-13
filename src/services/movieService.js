@@ -1,12 +1,12 @@
-import { httpsGET } from "./configURL";
+import { https } from "./configURL";
 
 export const movieService = {
   getListMovie: () => {
     let uri = `/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP05`;
-    return httpsGET.get(uri);
+    return https.get(uri);
   },
   getListBanner: () => {
     let uri = "/api/QuanLyPhim/LayDanhSachBanner";
-    return httpsGET.get(uri);
+    return https.get(uri);
   },
 };

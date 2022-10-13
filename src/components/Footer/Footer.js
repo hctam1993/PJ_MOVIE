@@ -122,8 +122,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="bg-gray-100">
-        <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-          <p className="text-gray-500 text-sm text-center sm:text-left">
+        <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row items-center">
+          <p className="text-gray-500 text-sm text-center sm:text-left mb-0">
             © 2022 Hà Chí Tâm
             <a
               href="https://github.com/hctam1993"

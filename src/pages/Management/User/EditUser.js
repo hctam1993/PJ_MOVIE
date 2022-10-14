@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getUserInfoEdit } from "../../../redux/slice/userSlice";
 import { Button, Form, Input, message, Radio } from "antd";
+import { useFormik } from "formik";
+import { userService } from "../../../services/userService";
 
 export default function EditUser() {
   const dispatch = useDispatch();
+  const { userInfoEdit } = useSelector((state) => state.userSlice);
+  // console.log("userInfoEdit: ", userInfoEdit);
   const { id } = useParams();
   // console.log("id: ", id);
   useEffect(() => {
@@ -13,12 +17,38 @@ export default function EditUser() {
   }, []);
 
   const [form] = Form.useForm();
-  const onFinish = (values) => {
-    console.log("values: ", values);
-  };
+  // const onFinish = (values) => {
+  //   console.log("values: ", values);
+  // };
+
+  const formikUser = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      email: userInfoEdit?.email,
+      hoTen: userInfoEdit?.hoTen,
+      maLoaiNguoiDung: userInfoEdit?.maLoaiNguoiDung,
+      maNhom: "GP01",
+      matKhau: userInfoEdit?.matKhau,
+      taiKhoan: userInfoEdit?.taiKhoan,
+      soDT: userInfoEdit?.soDT,
+    },
+    onSubmit: (values) => {
+      console.log(values);
+      userService
+        .updateUserInfo(values)
+        .then((res) => {
+          console.log(res);
+          message.success("Update thông tin thành công!");
+        })
+        .catch((err) => {
+          console.log(err);
+          message.error(err.response.data?.content);
+        });
+    },
+  });
+
   return (
     <div>
-      {" "}
       <Form
         labelCol={{
           span: 4,
@@ -28,13 +58,12 @@ export default function EditUser() {
         }}
         form={form}
         name="edit"
-        onFinish={onFinish}
+        onFinish={formikUser.handleSubmit}
         initialValues={{}}
         scrollToFirstError
       >
         <Form.Item
           label="Tài khoản"
-          name="taiKhoan"
           rules={[
             {
               required: true,
@@ -42,11 +71,15 @@ export default function EditUser() {
             },
           ]}
         >
-          <Input disabled />
+          <Input
+            // disabled
+            name="taiKhoan"
+            onChange={formikUser.handleChange}
+            value={formikUser.values.taiKhoan}
+            disabled
+          />
         </Form.Item>
         <Form.Item
-          className="disabled"
-          name="matKhau"
           label="Mật khẩu"
           rules={[
             {
@@ -56,11 +89,14 @@ export default function EditUser() {
           ]}
           hasFeedback
         >
-          <Input.Password />
+          <Input.Password
+            name="matKhau"
+            onChange={formikUser.handleChange}
+            value={formikUser.values.matKhau}
+          />
         </Form.Item>
 
         <Form.Item
-          name="email"
           label="E-mail"
           rules={[
             {
@@ -73,10 +109,13 @@ export default function EditUser() {
             },
           ]}
         >
-          <Input />
+          <Input
+            name="email"
+            onChange={formikUser.handleChange}
+            value={formikUser.values.email}
+          />
         </Form.Item>
         <Form.Item
-          name="soDt"
           label="Số điện thoại:"
           rules={[
             {
@@ -89,10 +128,13 @@ export default function EditUser() {
             },
           ]}
         >
-          <Input />
+          <Input
+            name="soDt"
+            onChange={formikUser.handleChange}
+            value={formikUser.values.soDT}
+          />
         </Form.Item>
         <Form.Item
-          name="hoTen"
           label="Họ tên:"
           tooltip="Tên của bạn là gì?"
           rules={[
@@ -103,12 +145,28 @@ export default function EditUser() {
             },
           ]}
         >
-          <Input />
+          <Input
+            name="hoTen"
+            onChange={formikUser.handleChange}
+            value={formikUser.values.hoTen}
+          />
         </Form.Item>
-        <Form.Item label="Radio">
+        <Form.Item
+          label="Loại người dùng:"
+          rules={[
+            {
+              required: true,
+              message: "Vui lòng chọn loại người dùng!",
+            },
+          ]}
+          name="maLoaiNguoiDung"
+          onChange={(e) =>
+            formikUser.setFieldValue("maLoaiNguoiDung", e.target.value)
+          }
+        >
           <Radio.Group>
-            <Radio value="QuanTri"> Quản trị </Radio>
-            <Radio value="KhachHang"> Khách hàng </Radio>
+            <Radio value="QuanTri">Quản trị</Radio>
+            <Radio value="KhachHang">Khách hàng</Radio>
           </Radio.Group>
         </Form.Item>
         <Form.Item

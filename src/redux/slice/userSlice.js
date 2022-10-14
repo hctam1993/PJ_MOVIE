@@ -6,6 +6,7 @@ const initialState = {
   isLogin: true,
   user: localService.user.get(),
   userInfoEdit: "",
+  userList: [],
 };
 
 const userSlice = createSlice({
@@ -14,6 +15,9 @@ const userSlice = createSlice({
   reducers: {
     setUserInfo: (state, action) => {
       state.user = action.payload;
+    },
+    setUserList: (state, action) => {
+      state.userList = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -28,14 +32,13 @@ export const getUserInfoEdit = createAsyncThunk(
   async (taiKhoan) => {
     try {
       const res = await userService.getUserInfoEdit(taiKhoan);
-      console.log(" res: ", res);
+      // console.log(" res: ", res);
       return res.data.content;
     } catch (error) {
       console.log("error: ", error);
     }
   }
 );
-
 export const { setUserInfo } = userSlice.actions;
 
 export default userSlice.reducer;

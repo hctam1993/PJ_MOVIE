@@ -7,12 +7,14 @@ const { Search } = Input;
 
 export default function User() {
   const [userList, setUserList] = useState([]);
+  const [userListClone, setUserListClone] = useState([]);
+
   useEffect(() => {
     let fetchUserList = () => {
       userService
         .getUserList()
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           let data = res.data.content.map((user) => {
             return {
               ...user,
@@ -24,7 +26,9 @@ export default function User() {
               ),
             };
           });
+
           setUserList(data);
+          setUserListClone(data);
         })
         .catch((err) => {
           console.log(err);
@@ -33,13 +37,18 @@ export default function User() {
     fetchUserList();
   }, []);
 
-  const onSearch = (value) => console.log(value);
+  const onSearch = (e) => {
+    const searchArr = userList.filter((item) => {
+      return item.taiKhoan.includes(e.target.value);
+    });
+    setUserList(searchArr);
+  };
   return (
     <div className="container mx-auto">
       <Search
         placeholder="Nhập tài khoản muốn tìm"
         allowClear
-        onSearch={onSearch}
+        onChange={onSearch}
         style={{
           width: 600,
         }}

@@ -29,9 +29,12 @@ export const userService = {
     );
   },
   getUserInfoEdit: (taiKhoan) => {
-    console.log("taiKhoan: ", taiKhoan);
+    // console.log("taiKhoan: ", taiKhoan);
     return https.post(
       `/api/QuanLyNguoiDung/LayThongTinNguoiDung?taiKhoan=${taiKhoan}`
     );
+  },
+  updateUserInfo: (data) => {
+    return https.post(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, data);
   },
 };

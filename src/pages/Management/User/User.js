@@ -3,11 +3,15 @@ import { userService } from "../../../services/userService";
 import UserAction from "./UserAction";
 import UserTable from "./UserTable";
 import { Input } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearch, setUserList } from "../../../redux/slice/userSlice";
+
 const { Search } = Input;
 
 export default function User() {
-  const [userList, setUserList] = useState([]);
-  const [userListClone, setUserListClone] = useState([]);
+  const { userListClone } = useSelector((state) => state.userSlice);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let fetchUserList = () => {
@@ -27,8 +31,7 @@ export default function User() {
             };
           });
 
-          setUserList(data);
-          setUserListClone(data);
+          dispatch(setUserList(data));
         })
         .catch((err) => {
           console.log(err);
@@ -38,11 +41,11 @@ export default function User() {
   }, []);
 
   const onSearch = (e) => {
-    const searchArr = userList.filter((item) => {
-      return item.taiKhoan.includes(e.target.value);
-    });
-    setUserList(searchArr);
+    // console.log("e: ", e);
+
+    dispatch(setSearch(e.target.value));
   };
+
   return (
     <div className="container mx-auto">
       <Search
@@ -54,7 +57,7 @@ export default function User() {
         }}
         className="py-2"
       />
-      <UserTable userList={userList} />
+      <UserTable userList={userListClone} />
     </div>
   );
 }

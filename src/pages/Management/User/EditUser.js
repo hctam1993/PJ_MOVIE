@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getUserInfoEdit } from "../../../redux/slice/userSlice";
@@ -8,6 +8,7 @@ import { userService } from "../../../services/userService";
 
 export default function EditUser() {
   const dispatch = useDispatch();
+  const [valueCheked, setValueCheked] = useState("QuanTri");
   const { userInfoEdit } = useSelector((state) => state.userSlice);
   // console.log("userInfoEdit: ", userInfoEdit);
   const { id } = useParams();
@@ -33,7 +34,7 @@ export default function EditUser() {
       soDT: userInfoEdit?.soDT,
     },
     onSubmit: (values) => {
-      console.log(values);
+      // console.log(values);
       userService
         .updateUserInfo(values)
         .then((res) => {
@@ -42,7 +43,7 @@ export default function EditUser() {
         })
         .catch((err) => {
           console.log(err);
-          message.error(err.response.data?.content);
+          message.error("Update thông tin thất bại");
         });
     },
   });
@@ -129,7 +130,7 @@ export default function EditUser() {
           ]}
         >
           <Input
-            name="soDt"
+            name="soDT"
             onChange={formikUser.handleChange}
             value={formikUser.values.soDT}
           />
@@ -160,13 +161,24 @@ export default function EditUser() {
             },
           ]}
           name="maLoaiNguoiDung"
-          onChange={(e) =>
-            formikUser.setFieldValue("maLoaiNguoiDung", e.target.value)
-          }
         >
           <Radio.Group>
-            <Radio value="QuanTri">Quản trị</Radio>
-            <Radio value="KhachHang">Khách hàng</Radio>
+            <Radio
+              value="QuanTri"
+              onChange={(e) => {
+                formikUser.setFieldValue("maLoaiNguoiDung", e.target.value);
+              }}
+            >
+              Quản trị
+            </Radio>
+            <Radio
+              value="KhachHang"
+              onChange={(e) => {
+                formikUser.setFieldValue("maLoaiNguoiDung", e.target.value);
+              }}
+            >
+              Khách hàng
+            </Radio>
           </Radio.Group>
         </Form.Item>
         <Form.Item

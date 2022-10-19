@@ -7,6 +7,8 @@ const initialState = {
   user: localService.user.get(),
   userInfoEdit: "",
   userList: [],
+  search: "",
+  userListClone: [],
 };
 
 const userSlice = createSlice({
@@ -18,6 +20,15 @@ const userSlice = createSlice({
     },
     setUserList: (state, action) => {
       state.userList = action.payload;
+      if (state.search == "") {
+        state.userListClone = [...state.userList];
+      }
+    },
+    setSearch: (state, action) => {
+      state.search = action.payload;
+      state.userListClone = [...state.userList].filter((user) => {
+        return user.taiKhoan.includes(state.search);
+      });
     },
   },
   extraReducers: (builder) => {
@@ -39,6 +50,6 @@ export const getUserInfoEdit = createAsyncThunk(
     }
   }
 );
-export const { setUserInfo } = userSlice.actions;
+export const { setUserInfo, setSearch, setUserList } = userSlice.actions;
 
 export default userSlice.reducer;

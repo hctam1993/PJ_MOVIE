@@ -10,7 +10,7 @@ const trailerSlice = createSlice({
   initialState,
   reducers: {
     setOpen: (state, action) => {
-      console.log("action: ", action);
+      // console.log("action: ", action);
       state.isOpen = true;
       state.srcURL = action.payload;
     },

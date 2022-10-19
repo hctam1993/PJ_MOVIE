@@ -30,11 +30,28 @@ export const userService = {
   },
   getUserInfoEdit: (taiKhoan) => {
     // console.log("taiKhoan: ", taiKhoan);
-    return https.post(
-      `/api/QuanLyNguoiDung/LayThongTinNguoiDung?taiKhoan=${taiKhoan}`
-    );
+    // return https.post(
+    //   `/api/QuanLyNguoiDung/LayThongTinNguoiDung?taiKhoan=${taiKhoan}`
+    // );
+    return axios({
+      url: `${baseURL}/api/QuanLyNguoiDung/LayThongTinNguoiDung?taiKhoan=${taiKhoan}`,
+      method: "POST",
+      headers: {
+        TokenCyberSoft: TOKEN_CYBERSOFT,
+        Authorization: "bearer " + localService.user.get()?.accessToken,
+      },
+    });
   },
   updateUserInfo: (data) => {
-    return https.post(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, data);
+    // return https.post(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, data);
+    return axios({
+      url: `${baseURL}/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+      method: "POST",
+      data: data,
+      headers: {
+        TokenCyberSoft: TOKEN_CYBERSOFT,
+        Authorization: "bearer " + localService.user.get()?.accessToken,
+      },
+    });
   },
 };

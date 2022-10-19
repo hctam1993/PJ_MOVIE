@@ -23,6 +23,8 @@ const store = configureStore({
     trailerSlice,
   },
   devTools: true,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

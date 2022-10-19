@@ -56,7 +56,7 @@ export default function MultipleRowSlick() {
   };
   return (
     <div className="multiRow my-10 w-11/12 mx-auto bg-gray-200">
-      <div className="mb-4">
+      <div className="mb-10">
         <button
           className="bg-red-500 hover:bg-red-600 focus:bg-red-800 text-white px-8 py-3 font-semibold rounded mr-2"
           onClick={() => {

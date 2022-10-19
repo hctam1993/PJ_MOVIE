@@ -17,7 +17,7 @@ const contentStyle = {
 
 export default function HomeCarousel(props) {
   const { dataBanner } = useSelector((state) => state.movieSlice);
-  console.log("dataBanner: ", dataBanner);
+  // console.log("dataBanner: ", dataBanner);
 
   const dispatch = useDispatch();
 

@@ -7,7 +7,7 @@ export default function Spinner() {
   // console.log("isLoading: ", isLoading);
 
   return isLoading ? (
-    <div className="h-screen w-screen fixed top-0 left-0 bg-black flex justify-center items-center z-50">
+    <div className="h-screen w-screen fixed top-0 left-0 bg-black flex justify-center items-center z-50 overflow-hidden">
       <PacmanLoader color="#FFDE00" speedMultiplier={2} size={50} />
     </div>
   ) : (

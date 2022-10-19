@@ -67,7 +67,7 @@ function App() {
             path="/checkout/:id"
             element={
               <SecureView>
-                <Management Component={CheckOut} />
+                <CheckOut />
               </SecureView>
             }
           />

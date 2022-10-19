@@ -17,7 +17,7 @@ const contentStyle = {
 
 export default function HomeCarousel(props) {
   const { dataBanner } = useSelector((state) => state.movieSlice);
-  // console.log("dataBanner: ", dataBanner);
+  console.log("dataBanner: ", dataBanner);
 
   const dispatch = useDispatch();
 
@@ -44,7 +44,10 @@ export default function HomeCarousel(props) {
   };
 
   return (
-    <section className="container">
+    <section
+      className="container mx-auto"
+      style={{ paddingTop: 64, maxWidth: "100vw" }}
+    >
       <Carousel
         // autoplay
         arrows={true}

@@ -30,7 +30,7 @@ export default function Management({ Component }) {
 
   const localUser = localService.user.get();
 
-  if (localUser.maLoaiNguoiDung !== "QuanTri") {
+  if (localUser?.maLoaiNguoiDung !== "QuanTri") {
     message.warn("Bạn không đươc phép truy cập vào trang này");
     setTimeout(() => {
       navigate("/");

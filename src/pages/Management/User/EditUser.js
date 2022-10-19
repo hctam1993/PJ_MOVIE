@@ -152,22 +152,15 @@ export default function EditUser() {
             value={formikUser.values.hoTen}
           />
         </Form.Item>
-        <Form.Item
-          label="Loại người dùng:"
-          rules={[
-            {
-              required: true,
-              message: "Vui lòng chọn loại người dùng!",
-            },
-          ]}
-          name="maLoaiNguoiDung"
-        >
-          <Radio.Group>
+        <Form.Item label="Loại người dùng:" name="maLoaiNguoiDung">
+          <Radio.Group defaultValue={"QuanTri"}>
             <Radio
               value="QuanTri"
               onChange={(e) => {
                 formikUser.setFieldValue("maLoaiNguoiDung", e.target.value);
+                setValueCheked(e.target.value);
               }}
+              checked={"QuanTri" == valueCheked}
             >
               Quản trị
             </Radio>
@@ -175,7 +168,9 @@ export default function EditUser() {
               value="KhachHang"
               onChange={(e) => {
                 formikUser.setFieldValue("maLoaiNguoiDung", e.target.value);
+                setValueCheked(e.target.value);
               }}
+              checked={"KhachHang" == valueCheked}
             >
               Khách hàng
             </Radio>

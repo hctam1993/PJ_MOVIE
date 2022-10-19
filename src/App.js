@@ -14,6 +14,7 @@ import SecureView from "./components/HOC/SecureView";
 import Management from "./pages/Management/Management";
 import User from "./pages/Management/User/User";
 import EditUser from "./pages/Management/User/EditUser";
+import CheckOut from "./pages/CheckOut/CheckOut";
 
 const DetailComponent = lazy(() => import("./pages/Detail/Detail"));
 
@@ -59,6 +60,14 @@ function App() {
             element={
               <SecureView>
                 <Management Component={EditUser} />
+              </SecureView>
+            }
+          />
+          <Route
+            path="/checkout/:id"
+            element={
+              <SecureView>
+                <Management Component={CheckOut} />
               </SecureView>
             }
           />

@@ -57,14 +57,14 @@ export default function Detail() {
 
   let renderHeThongRap = heThongRapChieu.map((heThongRap) => {
     return {
-      label: <img className="w-16 h-16" src={heThongRap.logo} />,
-      key: heThongRap.maHeThongRap,
+      label: <img className="w-16 h-16" src={heThongRap?.logo} />,
+      key: heThongRap?.maHeThongRap,
       children: (
         <Tabs
           tabPosition="left"
           style={{ maxHeight: 500, overflowY: "scroll" }}
           className="h-48 scrollbar scrollbar-thumb-green-600 scrollbar-track-green-300 overflow-y-scroll hover:scrollbar-thumb-red-500"
-          items={itemsCumRap(heThongRap.cumRapChieu)}
+          items={itemsCumRap(heThongRap?.cumRapChieu)}
         ></Tabs>
       ),
     };
@@ -73,7 +73,7 @@ export default function Detail() {
   return (
     <div
       style={{
-        backgroundImage: `url(${dataLichChieuTheoPhim.hinhAnh})`,
+        backgroundImage: `url(${dataLichChieuTheoPhim?.hinhAnh})`,
         minHeight: "100vh",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -91,32 +91,34 @@ export default function Detail() {
             <div className="grid grid-cols-3">
               <div className="col-span-1">
                 <img
-                  src={dataLichChieuTheoPhim.hinhAnh}
-                  alt={dataLichChieuTheoPhim.biDanh}
+                  src={dataLichChieuTheoPhim?.hinhAnh}
+                  alt={dataLichChieuTheoPhim?.biDanh}
                 />
               </div>
               <div className="ml-5 col-span-2">
                 <p className="">
-                  {moment(dataLichChieuTheoPhim.ngayKhoiChieu).format(
+                  {moment(dataLichChieuTheoPhim?.ngayKhoiChieu).format(
                     "DD-MM-YYYY"
                   )}
                 </p>
-                <p className="text-4xl mb-4">{dataLichChieuTheoPhim.tenPhim}</p>
-                <p className="">{dataLichChieuTheoPhim.moTa}</p>
+                <p className="text-4xl mb-4">
+                  {dataLichChieuTheoPhim?.tenPhim}
+                </p>
+                <p className="">{dataLichChieuTheoPhim?.moTa}</p>
               </div>
             </div>
           </div>
           <div className="col-span-4 col-start-8">
             <div
               className={
-                dataLichChieuTheoPhim.danhGia * 10 > 70
-                  ? `c100 p${dataLichChieuTheoPhim.danhGia * 10} green big`
-                  : dataLichChieuTheoPhim.danhGia * 10 < 50
-                  ? `c100 p${dataLichChieuTheoPhim.danhGia * 10} orange big`
-                  : `c100 p${dataLichChieuTheoPhim.danhGia * 10} big`
+                dataLichChieuTheoPhim?.danhGia * 10 > 70
+                  ? `c100 p${dataLichChieuTheoPhim?.danhGia * 10} green big`
+                  : dataLichChieuTheoPhim?.danhGia * 10 < 50
+                  ? `c100 p${dataLichChieuTheoPhim?.danhGia * 10} orange big`
+                  : `c100 p${dataLichChieuTheoPhim?.danhGia * 10} big`
               }
             >
-              <span>{dataLichChieuTheoPhim.danhGia * 10}</span>
+              <span>{dataLichChieuTheoPhim?.danhGia * 10}</span>
               <div className="slice">
                 <div className="bar"></div>
                 <div className="fill"></div>
@@ -124,7 +126,7 @@ export default function Detail() {
               <div className="" style={{ marginLeft: "24%" }}>
                 <Rate
                   allowHalf
-                  value={dataLichChieuTheoPhim.danhGia / 2}
+                  value={dataLichChieuTheoPhim?.danhGia / 2}
                   disabled
                 />
               </div>

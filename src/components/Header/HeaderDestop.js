@@ -9,7 +9,7 @@ export default function HeaderDestop() {
       : "flex items-center px-4 -mb-1 text-black hover:text-red-500";
   };
   return (
-    <header className="bg-white   fixed w-full z-10">
+    <header className="bg-white fixed w-full z-10">
       <div className="container flex justify-between h-16 mx-auto xl:px-4">
         <NavLink to="/">
           <img

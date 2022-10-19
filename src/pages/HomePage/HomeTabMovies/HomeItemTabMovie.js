@@ -13,8 +13,9 @@ export default function HomeItemTabMovie({ data }) {
           </h2>
           <div className="grid grid-cols-4 gap-2">
             {data.lstLichChieuTheoPhim.slice(0, 9).map((item, index) => {
+              // console.log("item: ", item);
               return (
-                <NavLink to="/" key={index}>
+                <NavLink to={`/checkout/${item.maLichChieu}`} key={index}>
                   <div
                     className="p-3 rounded bg-red-600 text-white text-center hover:bg-red-800 transition"
                     key={item.maLichChieu}

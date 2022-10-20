@@ -18,7 +18,7 @@ export default function CheckOut() {
           <h3 className="text-center text-2xl text-green-400">0 đ</h3>
           <hr />
           <h3 className="text-xl">Lật mặt 48H</h3>
-          <p>Địa điểm: BHD Star 3/2</p>
+          <p>Địa điểm: BHD Star Dhuidhi 3/2</p>
           <p>Ngày chiếu: 25/4/2020</p>
           <hr />
           <div className="flex flex-row my-5">

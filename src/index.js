@@ -13,6 +13,7 @@ import userSlice from "./redux/slice/userSlice";
 import movieSlice from "./redux/slice/movieSlice";
 import theaterSlice from "./redux/slice/theaterSlice";
 import trailerSlice from "./redux/slice/trailerSlice";
+import checkoutSlice from "./redux/slice/checkoutSlice";
 import { Provider } from "react-redux";
 
 const store = configureStore({
@@ -21,6 +22,7 @@ const store = configureStore({
     movieSlice,
     theaterSlice,
     trailerSlice,
+    checkoutSlice,
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>

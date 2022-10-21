@@ -9,7 +9,7 @@
   -webkit-filter: drop-shadow(0px 32px 26px #000000);
   -moz-filter: drop-shadow(0px 32px 26px #000000);
   color: white;
-  textalign: center;
-  texttransform: uppercase;
-  lineheight: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 30px;
 }

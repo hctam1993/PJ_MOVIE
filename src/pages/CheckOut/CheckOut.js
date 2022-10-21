@@ -1,9 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { layDanhSachPhongVe } from "../../redux/slice/checkoutSlice";
 import style from "./CheckOut.module.css";
 
 export default function CheckOut() {
   const { user } = useSelector((state) => state.userSlice);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(layDanhSachPhongVe(id));
+  }, []);
+
+  const { danhSachPhongVe } = useSelector((state) => state.checkoutSlice);
+  console.log("danhSachPhongVe: ", danhSachPhongVe);
+
+  const { thongTinPhim, danhSachGhe } = danhSachPhongVe;
 
   return (
     <div className="min-h-screen mt-5">
@@ -17,9 +30,9 @@ export default function CheckOut() {
         <div className="col-span-3 min-h-screen">
           <h3 className="text-center text-2xl text-green-400">0 đ</h3>
           <hr />
-          <h3 className="text-xl">Lật mặt 48H</h3>
-          <p>Địa điểm: BHD Star Dhuidhi 3/2</p>
-          <p>Ngày chiếu: 25/4/2020</p>
+          <h3 className="text-2xl font-bold">{thongTinPhim?.tenPhim}</h3>
+          <p>Địa chỉ: {thongTinPhim?.diaChi}</p>
+          <p>Ngày chiếu: {thongTinPhim?.ngayChieu}</p>
           <hr />
           <div className="flex flex-row my-5">
             <div className="w-4/5">

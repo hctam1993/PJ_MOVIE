@@ -23,13 +23,13 @@
   background-color: rgb(123, 122, 122);
   color: #fff;
 }
+.gheVip {
+  background-color: rgb(228, 74, 8);
+}
 .gheDaDat {
-  background-color: rgb(232, 76, 76);
+  background-color: rgb(255, 0, 0);
   cursor: no-drop;
 }
 .gheDangDat {
   background-color: rgb(18, 176, 18) !important;
-}
-.gheVip {
-  background-color: rgb(228, 74, 8);
 }

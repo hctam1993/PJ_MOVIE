@@ -14,4 +14,7 @@ export const checkoutService = {
       },
     });
   },
+  datVe: (thongTinDatVe) => {
+    return https.post("/api/QuanLyDatVe/DatVe", thongTinDatVe);
+  },
 };

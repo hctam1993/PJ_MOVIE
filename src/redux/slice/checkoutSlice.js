@@ -47,6 +47,17 @@ export const layDanhSachPhongVe = createAsyncThunk(
     }
   }
 );
+export const datVeXemPhim = createAsyncThunk(
+  "checkout/datVeXemPhim",
+  async (thongTinDatVe) => {
+    try {
+      const res = await checkoutService.datVe(thongTinDatVe);
+      // console.log("res: ", res);
+    } catch (error) {
+      console.log("error: ", error.response.data);
+    }
+  }
+);
 
 export const { datVe } = checkoutSlice.actions;
 

@@ -9,6 +9,7 @@ const initialState = {
   userList: [],
   search: "",
   userListClone: [],
+  thongTinNguoiDung: {},
 };
 
 const userSlice = createSlice({
@@ -35,6 +36,9 @@ const userSlice = createSlice({
     builder.addCase(getUserInfoEdit.fulfilled, (state, action) => {
       state.userInfoEdit = action.payload;
     });
+    builder.addCase(infoListTicket.fulfilled, (state, action) => {
+      state.thongTinNguoiDung = action.payload;
+    });
   },
 });
 
@@ -44,6 +48,17 @@ export const getUserInfoEdit = createAsyncThunk(
     try {
       const res = await userService.getUserInfoEdit(taiKhoan);
       // console.log(" res: ", res);
+      return res.data.content;
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  }
+);
+export const infoListTicket = createAsyncThunk(
+  "userSlice/infoListTicket",
+  async () => {
+    try {
+      const res = await userService.infoListTicket();
       return res.data.content;
     } catch (error) {
       console.log("error: ", error);

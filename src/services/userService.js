@@ -54,4 +54,15 @@ export const userService = {
       },
     });
   },
+  infoListTicket: () => {
+    // return https.post("/api/QuanLyNguoiDung/ThongTinTaiKhoan");
+    return axios({
+      url: `${baseURL}/api/QuanLyNguoiDung/ThongTinTaiKhoan`,
+      method: "POST",
+      headers: {
+        TokenCyberSoft: TOKEN_CYBERSOFT,
+        Authorization: "bearer " + localService.user.get()?.accessToken,
+      },
+    });
+  },
 };

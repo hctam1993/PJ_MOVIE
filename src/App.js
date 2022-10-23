@@ -15,6 +15,9 @@ import Management from "./pages/Management/Management";
 import User from "./pages/Management/User/User";
 import EditUser from "./pages/Management/User/EditUser";
 import CheckOut from "./pages/CheckOut/CheckOut";
+import Film from "./pages/Management/Film/Film";
+import FilmEdit from "./pages/Management/Film/FilmEdit";
+import FilmAddNew from "./pages/Management/Film/FilmAddNew";
 
 const DetailComponent = lazy(() => import("./pages/Detail/Detail"));
 
@@ -60,6 +63,30 @@ function App() {
             element={
               <SecureView>
                 <Management Component={EditUser} />
+              </SecureView>
+            }
+          />
+          <Route
+            path="/management/film"
+            element={
+              <SecureView>
+                <Management Component={Film} />
+              </SecureView>
+            }
+          />
+          <Route
+            path="/management/film/edit/:id"
+            element={
+              <SecureView>
+                <Management Component={FilmEdit} />
+              </SecureView>
+            }
+          />
+          <Route
+            path="/management/film/addnew"
+            element={
+              <SecureView>
+                <Management Component={FilmAddNew} />
               </SecureView>
             }
           />

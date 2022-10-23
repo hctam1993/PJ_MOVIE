@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Children, useState } from "react";
 import {
   FileOutlined,
   UserOutlined,
@@ -6,8 +6,9 @@ import {
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, message } from "antd";
 import { localService } from "../../services/localService";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import UserNav from "../../components/Header/UserNav";
+import User from "./User/User";
 const { Header, Content, Footer, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -19,8 +20,16 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("User", "sub1", <UserOutlined />),
-  getItem("Film", "sub2", <VideoCameraOutlined />),
+  getItem(
+    <NavLink to="/management/user">User</NavLink>,
+    "sub1",
+    <UserOutlined />
+  ),
+  getItem(
+    <NavLink to="/management/film">Film</NavLink>,
+    "sub2",
+    <VideoCameraOutlined />
+  ),
   getItem("ShowTime", "sub3", <FileOutlined />),
 ];
 

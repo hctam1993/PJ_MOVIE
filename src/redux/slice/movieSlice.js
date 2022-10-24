@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { message } from "antd";
 import { movieService } from "../../services/movieService";
 
 const initialState = {
@@ -58,6 +59,15 @@ export const getDataListMovie = createAsyncThunk(
     return res.data.content;
   }
 );
+
+export const addFilm = createAsyncThunk("movie/addFilm", async (data) => {
+  try {
+    const res = await movieService.addFilm(data);
+    message.success("Thêm phim thành công");
+  } catch (error) {
+    console.log("error: ", error.response.data);
+  }
+});
 
 export const { setPhimDangChieu, setPhimSapChieu } = movieSlice.actions;
 

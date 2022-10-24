@@ -9,4 +9,8 @@ export const movieService = {
     let uri = "/api/QuanLyPhim/LayDanhSachBanner";
     return https.get(uri);
   },
+  addFilm: (data) => {
+    let url = "/api/QuanLyPhim/ThemPhimUploadHinh";
+    return https.post(url, data);
+  },
 };

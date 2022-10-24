@@ -7,6 +7,7 @@ const initialState = {
   isLoading: false,
   dataListMovie: [],
   dataListMovieDefault: [],
+  filmDetailEdit: {},
 };
 
 const movieSlice = createSlice({
@@ -40,6 +41,9 @@ const movieSlice = createSlice({
       state.dataListMovieDefault = state.dataListMovie;
       // console.log("action.payload: ", action.payload);
     });
+    builder.addCase(getFilmDetailEdit.fulfilled, (state, action) => {
+      state.filmDetailEdit = action.payload;
+    });
   },
 });
 
@@ -68,6 +72,19 @@ export const addFilm = createAsyncThunk("movie/addFilm", async (data) => {
     console.log("error: ", error.response.data);
   }
 });
+
+export const getFilmDetailEdit = createAsyncThunk(
+  "movie/getFilmDetailEdit",
+  async (maPhim) => {
+    try {
+      const res = await movieService.getFilmDetailEdit(maPhim);
+      // console.log("res", res.data.content);
+      return res.data.content;
+    } catch (error) {
+      console.log("err", error.response.content);
+    }
+  }
+);
 
 export const { setPhimDangChieu, setPhimSapChieu } = movieSlice.actions;
 

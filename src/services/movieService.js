@@ -13,4 +13,8 @@ export const movieService = {
     let url = "/api/QuanLyPhim/ThemPhimUploadHinh";
     return https.post(url, data);
   },
+  getFilmDetailEdit: (maPhim) => {
+    let url = `/api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`;
+    return https.get(url);
+  },
 };

@@ -144,8 +144,8 @@ export default function FilmAddNew() {
         <Form.Item label="Số sao">
           <InputNumber
             onChange={handleChangeInputNumber("danhGia")}
-            min="1"
-            max="10"
+            min={1}
+            max={10}
           />
         </Form.Item>
         <Form.Item label="Hình ảnh:">

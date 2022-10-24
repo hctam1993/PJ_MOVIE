@@ -11,7 +11,7 @@ import {
 } from "antd";
 import { useFormik } from "formik";
 import moment from "moment";
-import { getFilmDetailEdit } from "../../../redux/slice/movieSlice";
+import { editFilm, getFilmDetailEdit } from "../../../redux/slice/movieSlice";
 import { useParams } from "react-router-dom";
 
 export default function FilmEdit() {
@@ -21,7 +21,7 @@ export default function FilmEdit() {
   const { filmDetailEdit } = useSelector((state) => state.movieSlice);
   const { id } = useParams();
 
-  console.log("filmDetailEdit", filmDetailEdit);
+  // console.log("filmDetailEdit", filmDetailEdit);
 
   useEffect(() => {
     dispatch(getFilmDetailEdit(id));
@@ -30,10 +30,11 @@ export default function FilmEdit() {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
+      maPhim: filmDetailEdit?.maPhim,
       tenPhim: filmDetailEdit?.tenPhim,
       trailer: filmDetailEdit?.trailer,
       moTa: filmDetailEdit?.moTa,
-      ngayKhoiChieu: moment(filmDetailEdit?.ngayKhoiChieu).format("DD/MM/YYYY"),
+      ngayKhoiChieu: filmDetailEdit?.ngayKhoiChieu,
       dangChieu: filmDetailEdit?.dangChieu,
       sapChieu: filmDetailEdit?.sapChieu,
       hot: filmDetailEdit?.hot,
@@ -41,7 +42,7 @@ export default function FilmEdit() {
       hinhAnh: null,
     },
     onSubmit: (values) => {
-      // console.log("values: ", values);
+      console.log("values: ", values);
       values.maNhom = "GP05";
 
       let formData = new FormData();
@@ -49,18 +50,21 @@ export default function FilmEdit() {
         if (key !== "hinhAnh") {
           formData.append(key, values[key]);
         } else {
-          formData.append("File", values.hinhAnh, values.hinhAnh.name);
+          if (values.hinhAnh != null) {
+            formData.append("File", values.hinhAnh, values.hinhAnh.name);
+          }
         }
       }
-      // dispatch(addFilm(formData));
+      // dispatch(editFilm(formData));
     },
   });
 
   const handleChangeDatePicker = (value) => {
-    let ngayKhoiChieu = moment(value).format("DD/MM/YYYY");
-    // console.log("ngayKhoiChieu: ", ngayKhoiChieu);
+    let ngayKhoiChieu = moment(value);
+    console.log("ngayKhoiChieu: ", ngayKhoiChieu.format("DD/MM/YYYY"));
 
     formik.setFieldValue("ngayKhoiChieu", ngayKhoiChieu);
+    // console.log("ngayKhoiChieu", formik.values.ngayKhoiChieu);
   };
 
   const handleChangeSwitch = (name) => {
@@ -149,7 +153,7 @@ export default function FilmEdit() {
           <DatePicker
             onChange={handleChangeDatePicker}
             format="DD/MM/YYYY"
-            value={formik.values?.ngayKhoiChieu}
+            value={moment(formik.values.ngayKhoiChieu)}
           />
         </Form.Item>
 
@@ -194,7 +198,7 @@ export default function FilmEdit() {
         </Form.Item>
         <Form.Item label="Tác vụ">
           <Button type="primary" htmlType="submit" className="uppercase">
-            Thêm phim
+            Cập nhật
           </Button>
         </Form.Item>
       </Form>

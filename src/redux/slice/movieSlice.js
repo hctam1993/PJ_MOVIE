@@ -81,10 +81,19 @@ export const getFilmDetailEdit = createAsyncThunk(
       // console.log("res", res.data.content);
       return res.data.content;
     } catch (error) {
-      console.log("err", error.response.content);
+      console.log("err", error.response.data);
     }
   }
 );
+export const editFilm = createAsyncThunk("movie/editFilm", async (data) => {
+  try {
+    const res = await movieService.editFilm(data);
+    message.success("Cập nhật phim thành công");
+    console.log("res", res.data.content);
+  } catch (error) {
+    console.log("error: ", error);
+  }
+});
 
 export const { setPhimDangChieu, setPhimSapChieu } = movieSlice.actions;
 

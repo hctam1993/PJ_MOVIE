@@ -1,10 +1,13 @@
 import React, { Fragment, useState } from "react";
 import { Table } from "antd";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteFilm, getDataListMovie } from "../../../redux/slice/movieSlice";
 
 export default function FilmTable({ filmList }) {
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
+  const dispatch = useDispatch();
   const handleChange = (pagination, filters, sorter) => {
     // console.log("Various parameters", pagination, filters, sorter);
     setFilteredInfo(filters);
@@ -23,7 +26,12 @@ export default function FilmTable({ filmList }) {
       columnKey: "age",
     });
   };
-  const handleDeleteFilm = () => {};
+  const handleDeleteFilm = (film) => {
+    if (window.confirm("Bạn có muốn xóa phim " + film.maPhim)) {
+      dispatch(deleteFilm(film.maPhim));
+      dispatch(getDataListMovie());
+    }
+  };
   const columns = [
     {
       title: "Mã phim",
@@ -100,13 +108,20 @@ export default function FilmTable({ filmList }) {
             <div className="space-x-2">
               <button
                 className="px-5 py-2 rounded bg-red-500 hover:bg-red-700 text-white transition"
-                onClick={handleDeleteFilm}
+                onClick={() => {
+                  handleDeleteFilm(film);
+                }}
               >
                 Xóa
               </button>
               <NavLink to={`/management/film/edit/${film.maPhim}`}>
                 <button className="px-5 py-2 rounded bg-blue-500 hover:bg-blue-700 text-white transition">
                   Sửa
+                </button>
+              </NavLink>
+              <NavLink to={`/management/film/showtime/${film.maPhim}`}>
+                <button className="px-5 py-2 rounded bg-green-500 hover:bg-green-700 text-white transition">
+                  Thêm lịch chiếu
                 </button>
               </NavLink>
             </div>
@@ -122,7 +137,7 @@ export default function FilmTable({ filmList }) {
         columns={columns}
         dataSource={filmList}
         onChange={handleChange}
-        key=""
+        rowKey={"maPhim"}
       />
     </div>
   );

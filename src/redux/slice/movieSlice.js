@@ -6,6 +6,8 @@ const initialState = {
   dataBanner: [],
   isLoading: false,
   dataListMovie: [],
+  dataListMovieClone: [],
+  searchFilm: "",
   dataListMovieDefault: [],
   filmDetailEdit: {},
 };
@@ -26,6 +28,12 @@ const movieSlice = createSlice({
         (item) => item.sapChieu
       );
     },
+    setSearchFilm: (state, action) => {
+      state.searchFilm = action.payload;
+      state.dataListMovieClone = [...state.dataListMovie].filter((film) => {
+        return film.tenPhim.includes(state.searchFilm);
+      });
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getDataBanner.pending, (state) => {
@@ -39,7 +47,9 @@ const movieSlice = createSlice({
     builder.addCase(getDataListMovie.fulfilled, (state, action) => {
       state.dataListMovie = action.payload;
       state.dataListMovieDefault = state.dataListMovie;
-      // console.log("action.payload: ", action.payload);
+      if (state.searchFilm == "") {
+        state.dataListMovieClone = [...state.dataListMovie];
+      }
     });
     builder.addCase(getFilmDetailEdit.fulfilled, (state, action) => {
       state.filmDetailEdit = action.payload;
@@ -91,10 +101,25 @@ export const editFilm = createAsyncThunk("movie/editFilm", async (data) => {
     message.success("Cập nhật phim thành công");
     console.log("res", res.data.content);
   } catch (error) {
+    message.error(error.response.data);
     console.log("error: ", error);
   }
 });
+export const deleteFilm = createAsyncThunk(
+  "movie/deleteFilm",
+  async (maPhim) => {
+    try {
+      const res = await movieService.deleteFilm(maPhim);
+      message.success("Xóa phim thành công");
+      console.log("res: ", res.data.content);
+    } catch (error) {
+      message.error("Xóa phim thất bại");
+      console.log("error: ", error.response.data);
+    }
+  }
+);
 
-export const { setPhimDangChieu, setPhimSapChieu } = movieSlice.actions;
+export const { setPhimDangChieu, setPhimSapChieu, setSearchFilm } =
+  movieSlice.actions;
 
 export default movieSlice.reducer;

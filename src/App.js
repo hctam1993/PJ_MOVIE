@@ -18,6 +18,7 @@ import CheckOut from "./pages/CheckOut/CheckOut";
 import Film from "./pages/Management/Film/Film";
 import FilmEdit from "./pages/Management/Film/FilmEdit";
 import FilmAddNew from "./pages/Management/Film/FilmAddNew";
+import FilmShowTimes from "./pages/Management/Film/FilmShowTimes";
 
 const DetailComponent = lazy(() => import("./pages/Detail/Detail"));
 
@@ -79,6 +80,14 @@ function App() {
             element={
               <SecureView>
                 <Management Component={FilmEdit} />
+              </SecureView>
+            }
+          />
+          <Route
+            path="/management/film/showtime/:id"
+            element={
+              <SecureView>
+                <Management Component={FilmShowTimes} />
               </SecureView>
             }
           />

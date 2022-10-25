@@ -32,4 +32,8 @@ export const movieService = {
       },
     });
   },
+  deleteFilm: (maPhim) => {
+    let url = `/api/QuanLyPhim/XoaPhim?MaPhim=${maPhim}`;
+    return https.delete(url);
+  },
 };

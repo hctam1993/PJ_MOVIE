@@ -33,7 +33,8 @@ export const getLichChieuTheoRap = createAsyncThunk(
 export const getLichChieuTheoPhim = createAsyncThunk(
   "theater/getLichChieuTheoPhim",
   async (id) => {
-    const res = await theaterService.getListTheater(id);
+    const res = await theaterService.getListTheaterByID(id);
+    // console.log("res", res.data.content);
     return res.data.content;
   }
 );

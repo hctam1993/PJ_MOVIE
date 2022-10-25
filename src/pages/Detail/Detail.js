@@ -5,7 +5,7 @@ import "../../assets/css/CircleRating.css";
 import { Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getLichChieuTheoPhim } from "../../redux/slice/theaterSlice";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import { Rate } from "antd";
 
@@ -13,7 +13,12 @@ export default function Detail() {
   const { dataLichChieuTheoPhim, heThongRapChieu } = useSelector(
     (state) => state.theaterSlice
   );
-
+  const navigate = useNavigate();
+  let danhGia = 0;
+  if (dataLichChieuTheoPhim.danhGia) {
+    danhGia = dataLichChieuTheoPhim.danhGia;
+  }
+  // console.log("danhGia", danhGia);
   // console.log("dataLichChieuTheoPhim: ", dataLichChieuTheoPhim);
   // console.log("heThongRapChieu: ", heThongRapChieu);
 
@@ -41,14 +46,16 @@ export default function Detail() {
         key: cumRap.maCumRap + index,
         children: cumRap.lichChieuPhim.slice(0, 19).map((lichChieu) => {
           return (
-            <NavLink to="/" key={lichChieu.maLichChieu}>
-              <button
-                className="px-5 py-2 bg-red-500 text-white mr-2 mb-2 rounded hover:bg-red-700 transition"
-                style={{ minWidth: 150 }}
-              >
-                {moment(lichChieu.ngayChieuGioChieu).format("DD-MM-YYYY h:mm")}
-              </button>
-            </NavLink>
+            <button
+              key={lichChieu.maLichChieu}
+              className="px-5 py-2 bg-red-500 text-white mr-2 mb-2 rounded hover:bg-red-700 transition"
+              onClick={() => {
+                navigate(`/checkout/${lichChieu.maLichChieu}`);
+              }}
+              style={{ minWidth: 150 }}
+            >
+              {moment(lichChieu.ngayChieuGioChieu).format("DD-MM-YYYY hh:mm")}
+            </button>
           );
         }),
       };
@@ -111,24 +118,20 @@ export default function Detail() {
           <div className="col-span-4 col-start-8">
             <div
               className={
-                dataLichChieuTheoPhim?.danhGia * 10 > 70
-                  ? `c100 p${dataLichChieuTheoPhim?.danhGia * 10} green big`
-                  : dataLichChieuTheoPhim?.danhGia * 10 < 50
-                  ? `c100 p${dataLichChieuTheoPhim?.danhGia * 10} orange big`
-                  : `c100 p${dataLichChieuTheoPhim?.danhGia * 10} big`
+                danhGia * 10 > 70
+                  ? `c100 p${danhGia * 10} green big`
+                  : danhGia * 10 < 50
+                  ? `c100 p${danhGia * 10} orange big`
+                  : `c100 p${danhGia * 10} big`
               }
             >
-              <span>{dataLichChieuTheoPhim?.danhGia * 10}</span>
+              <span>{danhGia * 10}</span>
               <div className="slice">
                 <div className="bar"></div>
                 <div className="fill"></div>
               </div>
               <div className="" style={{ marginLeft: "24%" }}>
-                <Rate
-                  allowHalf
-                  value={dataLichChieuTheoPhim?.danhGia / 2}
-                  disabled
-                />
+                <Rate allowHalf value={danhGia / 2} disabled />
               </div>
             </div>
           </div>

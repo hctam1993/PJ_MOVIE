@@ -111,7 +111,7 @@ export const deleteFilm = createAsyncThunk(
     try {
       const res = await movieService.deleteFilm(maPhim);
       message.success("Xóa phim thành công");
-      console.log("res: ", res.data.content);
+      // console.log("res: ", res.data.content);
     } catch (error) {
       message.error("Xóa phim thất bại");
       console.log("error: ", error.response.data);

@@ -3,6 +3,11 @@ import { Table } from "antd";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteFilm, getDataListMovie } from "../../../redux/slice/movieSlice";
+import {
+  AppstoreAddOutlined,
+  DeleteOutlined,
+  EditOutlined,
+} from "@ant-design/icons";
 
 export default function FilmTable({ filmList }) {
   const [filteredInfo, setFilteredInfo] = useState({});
@@ -107,21 +112,26 @@ export default function FilmTable({ filmList }) {
           <Fragment>
             <div className="space-x-2">
               <button
-                className="px-5 py-2 rounded bg-red-500 hover:bg-red-700 text-white transition"
+                className="px-4 py-1 rounded bg-red-500 hover:bg-red-700 text-white transition"
                 onClick={() => {
                   handleDeleteFilm(film);
                 }}
               >
-                Xóa
+                <DeleteOutlined className="pb-1" />
               </button>
               <NavLink to={`/management/film/edit/${film.maPhim}`}>
-                <button className="px-5 py-2 rounded bg-blue-500 hover:bg-blue-700 text-white transition">
-                  Sửa
+                <button className="px-4 py-1 rounded bg-blue-500 hover:bg-blue-700 text-white transition">
+                  <EditOutlined className="pb-1" />
                 </button>
               </NavLink>
               <NavLink to={`/management/film/showtime/${film.maPhim}`}>
-                <button className="px-5 py-2 rounded bg-green-500 hover:bg-green-700 text-white transition">
-                  Thêm lịch chiếu
+                <button
+                  className="px-4 py-1 rounded bg-green-500 hover:bg-green-700 text-white transition"
+                  onClick={() => {
+                    localStorage.setItem("filmParams", JSON.stringify(film));
+                  }}
+                >
+                  <AppstoreAddOutlined className="pb-1" />
                 </button>
               </NavLink>
             </div>

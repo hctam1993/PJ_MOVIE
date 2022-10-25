@@ -45,8 +45,8 @@ export default function HomeCarousel(props) {
 
   return (
     <section
-      className="container mx-auto"
-      style={{ paddingTop: 64, maxWidth: "100vw" }}
+      className="container mx-auto xl:pt-16 sm:pt-0"
+      style={{ maxWidth: "100vw" }}
     >
       <Carousel
         // autoplay

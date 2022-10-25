@@ -10,6 +10,7 @@ const initialState = {
   searchFilm: "",
   dataListMovieDefault: [],
   filmDetailEdit: {},
+  isDetail: "",
 };
 
 const movieSlice = createSlice({
@@ -33,6 +34,11 @@ const movieSlice = createSlice({
       state.dataListMovieClone = [...state.dataListMovie].filter((film) => {
         return film.tenPhim.includes(state.searchFilm);
       });
+    },
+    setIsDetail: (state, action) => {
+      // console.log("action: ", action);
+      state.isDetail = action.payload;
+      // console.log("state.isDetail: ", state.isDetail);
     },
   },
   extraReducers: (builder) => {
@@ -119,7 +125,7 @@ export const deleteFilm = createAsyncThunk(
   }
 );
 
-export const { setPhimDangChieu, setPhimSapChieu, setSearchFilm } =
+export const { setPhimDangChieu, setPhimSapChieu, setSearchFilm, setIsDetail } =
   movieSlice.actions;
 
 export default movieSlice.reducer;

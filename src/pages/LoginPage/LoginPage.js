@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userService } from "../../services/userService";
 import { localService } from "../../services/localService";
 import { setUserInfo } from "../../redux/slice/userSlice";
@@ -21,19 +21,24 @@ export default function LoginPage() {
   let navigate = useNavigate();
 
   let dispatch = useDispatch();
+
+  const { isDetail } = useSelector((state) => state.movieSlice);
+  console.log("isDetail: ", isDetail);
   const onFinish = (values) => {
-    console.log("Success:", values);
+    // console.log("Success:", values);
 
     userService
       .postLogin(values)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         localService.user.set(res.data.content); // lưu vào localStore
         dispatch(setUserInfo(res.data.content));
         message.success("Đăng nhập thành công!");
         if (res.data.content.maLoaiNguoiDung === "KhachHang") {
           setTimeout(() => {
-            navigate("/");
+            if (isDetail === true) {
+              navigate(-1);
+            } else navigate("/");
           }, 2000);
         } else {
           navigate("/management");
@@ -49,7 +54,7 @@ export default function LoginPage() {
     console.log("Failed:", errorInfo);
   };
   return (
-    <div className="container mx-auto login__page" style={backGroundStyle}>
+    <div className="w-screen mx-auto login__page" style={backGroundStyle}>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-6">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl uppercase text-center">

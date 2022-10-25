@@ -5,14 +5,16 @@ import "../../assets/css/CircleRating.css";
 import { Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getLichChieuTheoPhim } from "../../redux/slice/theaterSlice";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import { Rate } from "antd";
+import { setIsDetail } from "../../redux/slice/movieSlice";
 
 export default function Detail() {
   const { dataLichChieuTheoPhim, heThongRapChieu } = useSelector(
     (state) => state.theaterSlice
   );
+
   const navigate = useNavigate();
   let danhGia = 0;
   if (dataLichChieuTheoPhim.danhGia) {
@@ -27,6 +29,7 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(getLichChieuTheoPhim(id));
+    dispatch(setIsDetail(true));
 
     window.scrollTo(0, 0);
   }, []);

@@ -14,6 +14,14 @@ import _ from "lodash";
 import { Tabs } from "antd";
 import { infoListTicket } from "../../redux/slice/userSlice";
 
+const backGroundStyle = {
+  background: `url(http://demo1.cybersoft.edu.vn/static/media/backapp.b46ef3a1.jpg)`,
+  minHeight: "100vh",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "center",
+};
+
 function CheckOut() {
   const { user } = useSelector((state) => state.userSlice);
   // console.log("user: ", user);
@@ -92,8 +100,8 @@ function CheckOut() {
     .toLocaleString();
 
   return (
-    <div className="min-h-screen mt-5">
-      <div className="grid grid-cols-12">
+    <div className="mt-20">
+      <div className="grid grid-cols-12 bg-white">
         <div className="col-span-9">
           <div className="flex flex-col items-center mt-5">
             <div className="trapezoid">Màn hình</div>
@@ -373,8 +381,8 @@ const App = () => {
     { label: "02 KẾT QUẢ ĐẶT VÉ", key: "item-2", children: <KetQuaDatVe /> },
   ];
   return (
-    <div className="p-5">
-      <Tabs animated items={items} />
+    <div className="" style={backGroundStyle}>
+      <Tabs animated items={items} className="mt-40" />
     </div>
   );
 };

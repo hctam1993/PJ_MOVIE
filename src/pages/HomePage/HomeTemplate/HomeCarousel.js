@@ -45,7 +45,7 @@ export default function HomeCarousel(props) {
 
   return (
     <section
-      className="container mx-auto xl:pt-16 sm:pt-0"
+      className="container mx-auto xl:pt-16 pt-0 hidden md:block"
       style={{ maxWidth: "100vw" }}
     >
       <Carousel

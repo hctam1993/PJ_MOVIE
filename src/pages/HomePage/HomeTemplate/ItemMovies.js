@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import { Card } from "antd";
 import { setOpen } from "../../../redux/slice/trailerSlice";
@@ -44,13 +44,15 @@ export default function ItemMovies({ data }) {
     >
       <Meta
         title={
-          <p className="text-red-600 text-center text-xl">{data.tenPhim}</p>
+          <p className="text-red-600 text-center text-xl mb-0">
+            {data.tenPhim}
+          </p>
         }
         description={<p className="truncate">{data.moTa}</p>}
       />
       <NavLink to={`/detail/${data.maPhim}`}>
         <button
-          className="w-full py-2 text-center bg-red-600 text-white mt-5 rounded transition
+          className="w-full py-2 text-center bg-red-600 text-white lg:mt-5 rounded transition
    duration-300 hover:bg-black"
         >
           Xem chi tiết

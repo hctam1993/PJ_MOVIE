@@ -4,7 +4,6 @@ import { userService } from "../../services/userService";
 import { useNavigate } from "react-router-dom";
 
 const backGroundStyle = {
-  padding: "32px",
   background: `url(http://demo1.cybersoft.edu.vn/static/media/backapp.b46ef3a1.jpg)`,
   minHeight: "100vh",
   backgroundSize: "cover",
@@ -34,9 +33,9 @@ export default function Register() {
   };
 
   return (
-    <div className="w-screen mx-auto login__page" style={backGroundStyle}>
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-6">
+    <div className="mx-auto login__page" style={backGroundStyle}>
+      <div className="flex flex-col items-center justify-center h-screen ">
+        <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md p-6">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl uppercase text-center">
             Đăng ký
           </h1>

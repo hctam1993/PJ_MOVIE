@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDataBanner } from "../../../redux/slice/movieSlice";
 
 const contentStyle = {
-  height: "600px",
+  height: "100vh",
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
@@ -45,7 +45,7 @@ export default function HomeCarousel(props) {
 
   return (
     <section
-      className="container mx-auto xl:pt-16 pt-0 hidden md:block"
+      className="container mx-auto pt-16  hidden md:block"
       style={{ maxWidth: "100vw" }}
     >
       <Carousel

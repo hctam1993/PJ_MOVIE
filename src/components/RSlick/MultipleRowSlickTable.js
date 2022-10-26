@@ -55,7 +55,7 @@ export default function MultipleRowSlickTable() {
     ),
   };
   return (
-    <div className="multiRow xl:my-10 w-11/12 mx-auto bg-gray-200">
+    <div className="multiRow my-10 w-11/12 mx-auto bg-gray-200">
       <div className="xl:mb-10 mb-4">
         <button
           className="bg-red-500 hover:bg-red-600 focus:bg-red-800 text-white px-8 py-3 font-semibold rounded mr-2"

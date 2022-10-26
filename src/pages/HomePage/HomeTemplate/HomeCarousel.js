@@ -34,7 +34,8 @@ export default function HomeCarousel(props) {
       return (
         <div key={item.maBanner + index}>
           <div
-            style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }}
+            style={{ backgroundImage: `url(${item.hinhAnh})` }}
+            className="lg:h-screen text-white bg-center bg-no-repeat bg-cover"
           >
             <img src={item.hinhAnh} className="w-full opacity-0" alt="" />
           </div>
@@ -45,7 +46,7 @@ export default function HomeCarousel(props) {
 
   return (
     <section
-      className="container mx-auto pt-16  hidden md:block"
+      className="container mx-auto pt-16 homeCarousel"
       style={{ maxWidth: "100vw" }}
     >
       <Carousel

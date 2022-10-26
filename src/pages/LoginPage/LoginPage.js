@@ -8,7 +8,6 @@ import { setUserInfo } from "../../redux/slice/userSlice";
 import "../../assets/css/LoginForm.css";
 
 const backGroundStyle = {
-  padding: "32px",
   background: `url(http://demo1.cybersoft.edu.vn/static/media/backapp.b46ef3a1.jpg)`,
   minHeight: "100vh",
   backgroundSize: "cover",
@@ -23,7 +22,7 @@ export default function LoginPage() {
   let dispatch = useDispatch();
 
   const { isDetail } = useSelector((state) => state.movieSlice);
-  console.log("isDetail: ", isDetail);
+  // console.log("isDetail: ", isDetail);
   const onFinish = (values) => {
     // console.log("Success:", values);
 
@@ -55,8 +54,8 @@ export default function LoginPage() {
   };
   return (
     <div className="w-screen mx-auto login__page" style={backGroundStyle}>
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-6">
+      <div className="flex flex-col items-center justify-center h-screen">
+        <div className="w-full bg-white rounded-lg shadow md:mt-0 max-w-md p-6">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl uppercase text-center">
             Đăng nhập
           </h1>

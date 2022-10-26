@@ -1,13 +1,13 @@
-.ant-carousel .slick-prev,
-.ant-carousel .slick-next,
-.ant-carousel .slick-prev:hover,
-.ant-carousel .slick-next:hover {
+.homeCarousel .ant-carousel .slick-prev,
+.homeCarousel .ant-carousel .slick-next,
+.homeCarousel .ant-carousel .slick-prev:hover,
+.homeCarousel .ant-carousel .slick-next:hover {
   font-size: inherit;
   color: currentColor;
 }
 
-.ant-carousel .slick-prev,
-.ant-carousel .slick-prev:hover {
+.homeCarousel .ant-carousel .slick-prev,
+.homeCarousel .ant-carousel .slick-prev:hover {
   left: 30px;
   font-size: 40px;
   z-index: 2;
@@ -15,16 +15,16 @@
   transition: 0.5s;
 }
 
-.ant-carousel .slick-next,
-.ant-carousel .slick-next:hover {
+.homeCarousel .ant-carousel .slick-next,
+.homeCarousel .ant-carousel .slick-next:hover {
   right: 30px;
   font-size: 40px;
   z-index: 2;
   color: white;
   transition: 0.5s;
 }
-.ant-carousel .slick-prev:hover,
-.ant-carousel .slick-next:hover {
+.homeCarousel .ant-carousel .slick-prev:hover,
+.homeCarousel .ant-carousel .slick-next:hover {
   opacity: 0.5;
 }
 body .slick-prev::before,
@@ -36,9 +36,51 @@ body .slick-next::before {
   width: 100%;
   overflow: hidden !important;
 }
-.ant-carousel .slick-dots {
+.homeCarousel .ant-carousel .slick-dots {
   margin: 0;
 }
-.slick-dots li button:before {
+.homeCarousel .slick-dots li button:before {
   display: none;
+}
+.homeCarousel .ant-carousel .slick-dots li.slick-active button {
+  background: red;
+  opacity: 1;
+}
+.homeCarousel .ant-carousel .slick-dots li button {
+  display: block;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  color: transparent;
+  font-size: 0;
+  background: red;
+  border: 3px solid white;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: all 0.5s;
+}
+.homeCarousel .slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+.homeCarousel .ant-carousel .slick-dots-bottom {
+  bottom: 40px;
+}
+.homeCarousel .ant-carousel .slick-dots li {
+  margin: 0 20px;
+}
+.homeCarousel .ant-carousel .slick-dots li button:focus,
+.ant-carousel .slick-dots li button:hover {
+  opacity: 0.75;
 }

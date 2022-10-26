@@ -41,7 +41,7 @@ export default function MultipleRowSlickMobile() {
     arrows: false,
   };
   return (
-    <div className="multiRow xl:my-10 w-full mx-auto bg-gray-200 pt-20">
+    <div className="multiRow my-10 w-full mx-auto bg-gray-200">
       <div className="xl:mb-10 mb-4">
         <button
           className="bg-red-500 hover:bg-red-600 focus:bg-red-800 text-white px-4 py-2 font-semibold rounded mr-2"

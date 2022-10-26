@@ -16,12 +16,23 @@
 }
 .ghe {
   /* ghế thường */
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   border-radius: 5px;
   margin: 5px;
   background-color: rgb(123, 122, 122);
   color: #fff;
+}
+@media (min-width: 1024px) {
+  .ghe {
+    /* ghế thường */
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    margin: 5px;
+    background-color: rgb(123, 122, 122);
+    color: #fff;
+  }
 }
 .gheVip {
   background-color: rgb(228, 74, 8);

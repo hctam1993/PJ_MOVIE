@@ -41,7 +41,7 @@ function App() {
             }
           />
 
-          <Route path="/login" element={<Layout Component={LoginPage} />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
           <Route
             path="/management"

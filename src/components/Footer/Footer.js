@@ -36,7 +36,7 @@ export default function Footer() {
       style={{ backgroundColor: "#212121" }}
     >
       <div className="container px-5 sm:py-12 py-5 mx-auto flex md:items-center lg:items-start md:flex-row flex-wrap flex-col">
-        <div className="sm:w-64 w-32 flex-shrink-0 md:mx-0 m-auto text-center md:text-left items-center">
+        <div className="sm:w-64 w-1/2 flex-shrink-0 md:mx-0 lg:ml-20 m-auto text-center md:text-left items-center">
           <a className="flex title-font font-medium items-center md:justify-start justify-center text-white">
             <img src="http://demo1.cybersoft.edu.vn/logo.png" />
           </a>

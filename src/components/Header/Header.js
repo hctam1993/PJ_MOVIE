@@ -21,7 +21,7 @@ export default function Header() {
         <ul className=" self-center hidden space-x-8 lg:flex m-0 h-4/5 items-center justify-center">
           <li className="flex">
             <a
-              href="#"
+              href="/#"
               className="hover:text-red-500 text-black text-xl focus:text-red-500 focus:font-bold"
             >
               Trang chủ
@@ -29,7 +29,7 @@ export default function Header() {
           </li>
           <li className="flex">
             <a
-              href="#lichChieu"
+              href="/#lichChieu"
               className="hover:text-red-500 text-black text-xl focus:text-red-500 focus:font-bold"
             >
               Lịch chiếu
@@ -37,7 +37,7 @@ export default function Header() {
           </li>
           <li className="flex">
             <a
-              href="#cumRap"
+              href="/#cumRap"
               className="hover:text-red-500 text-black text-xl focus:text-red-500 focus:font-bold"
             >
               Cụm rạp

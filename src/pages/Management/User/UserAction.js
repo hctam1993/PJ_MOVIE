@@ -14,7 +14,7 @@ export default function UserAction({ taiKhoan, onSuccess }) {
       })
       .catch((err) => {
         console.log(err);
-        message.error("Xóa thất bại!");
+        message.error(err.response.data);
       });
   };
 

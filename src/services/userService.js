@@ -24,9 +24,17 @@ export const userService = {
     return https.get(uri);
   },
   deleteUser: (taiKhoan) => {
-    return https.delete(
-      `/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`
-    );
+    // return https.delete(
+    //   `/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`
+    // );
+    return axios({
+      url: `${baseURL}/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
+      method: "DELETE",
+      headers: {
+        TokenCyberSoft: TOKEN_CYBERSOFT,
+        Authorization: "bearer " + localService.user.get()?.accessToken,
+      },
+    });
   },
   getUserInfoEdit: (taiKhoan) => {
     // console.log("taiKhoan: ", taiKhoan);
@@ -60,8 +68,8 @@ export const userService = {
       url: `${baseURL}/api/QuanLyNguoiDung/ThongTinTaiKhoan`,
       method: "POST",
       headers: {
-        TokenCyberSoft: TOKEN_CYBERSOFT,
-        Authorization: "bearer " + localService.user.get()?.accessToken,
+        TokenCybersoft: TOKEN_CYBERSOFT,
+        Authorization: "Bearer " + localService.user.get()?.accessToken,
       },
     });
   },

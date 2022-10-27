@@ -48,8 +48,8 @@ body .slick-next::before {
 }
 .homeCarousel .ant-carousel .slick-dots li button {
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   padding: 0;
   color: transparent;
   font-size: 0;
@@ -78,7 +78,7 @@ body .slick-next::before {
   bottom: 40px;
 }
 .homeCarousel .ant-carousel .slick-dots li {
-  margin: 0 20px;
+  margin: 0 10px;
 }
 .homeCarousel .ant-carousel .slick-dots li button:focus,
 .ant-carousel .slick-dots li button:hover {

@@ -15,7 +15,7 @@ export default function Register() {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const onFinish = (values) => {
-    let dataReg = { ...values, maNhom: "" };
+    let dataReg = { ...values, maNhom: "GP01" };
     console.log("Received values of form: ", dataReg);
     userService
       .register(dataReg)

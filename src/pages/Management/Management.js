@@ -1,14 +1,9 @@
-import React, { Children, useState } from "react";
-import {
-  FileOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
+import React, { useState } from "react";
+import { UserOutlined, VideoCameraOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, message } from "antd";
 import { localService } from "../../services/localService";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserNav from "../../components/Header/UserNav";
-import User from "./User/User";
 const { Header, Content, Footer, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -30,7 +25,6 @@ const items = [
     "sub2",
     <VideoCameraOutlined />
   ),
-  getItem("ShowTime", "sub3", <FileOutlined />),
 ];
 
 export default function Management({ Component }) {
@@ -58,7 +52,12 @@ export default function Management({ Component }) {
           collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
         >
-          <img src="http://demo1.cybersoft.edu.vn/logo.png" className=" p-1" />
+          <NavLink to="/">
+            <img
+              src="http://demo1.cybersoft.edu.vn/logo.png"
+              className=" p-1"
+            />
+          </NavLink>
           <Menu
             theme="dark"
             defaultSelectedKeys={["1"]}

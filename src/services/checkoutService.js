@@ -15,6 +15,15 @@ export const checkoutService = {
     });
   },
   datVe: (thongTinDatVe) => {
-    return https.post("/api/QuanLyDatVe/DatVe", thongTinDatVe);
+    // return https.post("/api/QuanLyDatVe/DatVe", thongTinDatVe);
+    return axios({
+      baseURL: `${baseURL}/api/QuanLyDatVe/DatVe`,
+      method: "POST",
+      data: thongTinDatVe,
+      headers: {
+        TokenCyberSoft: TOKEN_CYBERSOFT,
+        Authorization: "Bearer " + localService.user.get()?.accessToken,
+      },
+    });
   },
 };

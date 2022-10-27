@@ -90,7 +90,9 @@ function CheckOut() {
       return (tongTien += ghe.giaVe);
     }, 0)
     .toLocaleString();
-
+  const paddingDatVe = {
+    padding: "24px 16px",
+  };
   return (
     <div className="mt-10">
       <div className="grid grid-cols-12 bg-white">
@@ -142,60 +144,67 @@ function CheckOut() {
             </table>
           </div>
         </div>
-        <div className="col-span-3 max-h-full box__tinhTien">
-          <h3 className="text-center text-2xl text-green-400 px-3">0 đ</h3>
-          <hr />
-          <h3 className="text-2xl font-bold px-3">{thongTinPhim?.tenPhim}</h3>
-          <p className="px-3">
-            Địa chỉ: {thongTinPhim?.tenCumRap} - {thongTinPhim?.tenRap}
-          </p>
-          <p className="px-3">
-            Ngày chiếu: {thongTinPhim?.ngayChieu} - {thongTinPhim?.gioChieu}
-          </p>
-          <hr />
-          <div className="flex flex-row my-5 items-center pl-3">
-            <div className="w-3/4">
-              <span className="text-red-400 text-lg pr-3">Ghế:</span>
-              {renderGheDD()}
+        <div className="col-span-3 flex-grow basis-1/3 ">
+          <div className="w-full" style={{ boxShadow: "0 0 5px grey" }}>
+            <div style={paddingDatVe}>
+              <p className="text-green-500 text-4xl text-center">
+                {tongTien}VND
+              </p>
             </div>
-            <div className="text-right col-span-1">
-              <span className="text-green-800 text-lg">{tongTien} đ</span>
+            <hr className="bg-gray-400 mx-4" style={{ height: 1 }} />
+            <div className="flex justify-between" style={paddingDatVe}>
+              <h3 className="text-lg">Tên phim:</h3>
+              <h3 className="text-lg font-bold text-red-500">
+                {thongTinPhim?.tenPhim}
+              </h3>
             </div>
-          </div>
-          <hr />
-          <div className="my-5 px-3">
-            <i>Email</i>
-            <br />
-            {user.email}
-          </div>
-          <hr />
-          <div className="my-5 px-3">
-            <i>Phone</i>
-            <br />
-            {user.soDT}
-          </div>
-          <hr />
-          <div className="mt-10 w-11/12 mx-auto">
-            <div
-              className="bg-green-500 text-white w-full text-2xl text-center py-3 font-bold cursor-pointer"
+            <hr className="bg-gray-400 mx-4" style={{ height: 1 }} />
+            <div className="flex justify-between" style={paddingDatVe}>
+              <h3 className="text-lg">Cụm rạp:</h3>
+              <h3 className="text-lg text-green-600">
+                {thongTinPhim?.tenCumRap}-{thongTinPhim?.tenRap}
+              </h3>
+            </div>
+            <hr className="bg-gray-400 mx-4" style={{ height: 1 }} />
+            <div className="flex justify-between" style={paddingDatVe}>
+              <h3 className="text-lg">Địa chỉ:</h3>
+              <h3 className="text-lg  text-green-600">
+                {thongTinPhim?.diaChi}
+              </h3>
+            </div>
+            <hr className="bg-gray-400 mx-4" style={{ height: 1 }} />
+            <div className="flex justify-between" style={paddingDatVe}>
+              <h3 className="text-lg">Ngày giờ chiếu:</h3>
+              <h3 className="text-lg  text-green-600">
+                {thongTinPhim?.ngayChieu} - {thongTinPhim?.gioChieu}
+              </h3>
+            </div>
+            <hr className="bg-gray-400 mx-4" style={{ height: 1 }} />
+            <div className="flex justify-between" style={paddingDatVe}>
+              <h3 className="text-lg">Ghế:</h3>
+              <div>{renderGheDD()}</div>
+            </div>
+            <hr className="bg-gray-400 mx-4" style={{ height: 1 }} />
+            <button
+              className="text-white w-full bg-red-500 hover:bg-red-700 text-2xl mt-6 rounded p-2"
               onClick={() => {
                 const thongTinDatVe = {
                   maLichChieu: id,
                   danhSachVe: danhSachGheDangDat,
                 };
                 // console.log("thongTinDatVe: ", thongTinDatVe);
-                dispatch(datVeXemPhim(thongTinDatVe))
-                  .then((res) => {
-                    message.success("Đặt vé thành công");
-                  })
-                  .catch((err) => {
-                    message.error(err.response?.data);
-                  });
+                dispatch(datVeXemPhim(thongTinDatVe));
+
                 dispatch(layDanhSachPhongVe(id));
               }}
             >
-              ĐẶT VÉ
-            </div>
+              <span
+                className="font-medium tracking-wide"
+                style={{ lineHeight: 1.75 }}
+              >
+                ĐẶT VÉ
+              </span>
+            </button>
           </div>
         </div>
       </div>

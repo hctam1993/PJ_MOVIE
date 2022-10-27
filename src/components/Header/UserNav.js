@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { localService } from "../../services/localService";
 import { NavLink } from "react-router-dom";
 import { setIsDetail } from "../../redux/slice/movieSlice";
+import { UserOutlined } from "@ant-design/icons";
 
 export default function UserNav() {
   let { user } = useSelector((state) => state.userSlice);
@@ -32,13 +33,19 @@ export default function UserNav() {
       return (
         <div className="items-center flex-shrink-0 flex space-x-2">
           <NavLink to="/login">
-            <button className="self-center px-2 py-1 lg:px-7 lg:py-2 font-semibold rounded bg-red-500 hover:bg-red-700 text-white">
-              Đăng nhập
+            <button className="flex items-center px-2 py-1 lg:py-2 font-semibold bg-transparent hover:text-red-500 h text-gray-500 lg:text-xl transition">
+              <div>
+                <UserOutlined className="text-2xl pb-2 px-2" />
+              </div>
+              <span> Đăng nhập</span>
             </button>
           </NavLink>
           <NavLink to="/register">
-            <button className="self-center px-2 py-1 lg:px-7 lg:py-2 font-semibold rounded bg-red-500 hover:bg-red-700 text-white">
-              Đăng ký
+            <button className="flex items-center px-2 py-1 lg:py-2 font-semibold bg-transparent hover:text-red-500 h text-gray-500 lg:text-xl transition">
+              <div>
+                <UserOutlined className="text-2xl pb-2 px-2" />
+              </div>
+              <span> Đăng ký</span>
             </button>
           </NavLink>
         </div>

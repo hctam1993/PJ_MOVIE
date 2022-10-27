@@ -6,7 +6,7 @@ import MultipleRowSlickTable from "./MultipleRowSlickTable";
 
 export default function MultipleRowSlick() {
   return (
-    <div>
+    <div id="lichChieu">
       <DesktopView>
         <MultipleRowSlickDesktop />
       </DesktopView>

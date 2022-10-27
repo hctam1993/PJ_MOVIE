@@ -147,7 +147,7 @@ export default function DetailMobile() {
           {" "}
           <p className="">{dataLichChieuTheoPhim?.moTa}</p>
         </div>
-        <div className="container mx-auto mt-10">
+        <div className="container mx-auto mt-10 bg-white px-2 rounded-lg">
           <Tabs tabPosition={"top"} items={renderHeThongRap} />
         </div>
       </CustomCard>

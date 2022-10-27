@@ -10,7 +10,7 @@ import HomeTabMovieTable from "./HomeTabMovieTable";
 
 export default function HomeTabMovie() {
   return (
-    <div>
+    <div id="cumRap">
       <DesktopView>
         <HomeTabMovieDesktop />
       </DesktopView>

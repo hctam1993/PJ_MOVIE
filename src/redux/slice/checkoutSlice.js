@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { message } from "antd";
 import { checkoutService } from "../../services/checkoutService";
 
 const initialState = {
@@ -52,8 +53,10 @@ export const datVeXemPhim = createAsyncThunk(
   async (thongTinDatVe) => {
     try {
       const res = await checkoutService.datVe(thongTinDatVe);
+      message.success("Đặt vé thành công");
       // console.log("res: ", res);
     } catch (error) {
+      message.error("Đặt vé thất bại");
       console.log("error: ", error.response.data);
     }
   }

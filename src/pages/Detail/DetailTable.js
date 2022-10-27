@@ -139,7 +139,7 @@ export default function DetailTable() {
             </div>
           </div>
         </div>
-        <div className="container mx-auto mt-10 pl-20">
+        <div className="container mx-auto mt-10 p-5 bg-white rounded-xl">
           <Tabs tabPosition={"left"} items={renderHeThongRap} />
         </div>
       </CustomCard>

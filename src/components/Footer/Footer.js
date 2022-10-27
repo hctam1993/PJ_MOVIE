@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 export default function Footer() {
   const { dataLichChieuTheoRap } = useSelector((state) => state.theaterSlice);
 
-  // console.log("dataLichChieuTheoRap: ", dataLichChieuTheoRap);
+  console.log("dataLichChieuTheoRap: ", dataLichChieuTheoRap);
   let arrHethongRap = dataLichChieuTheoRap.reduce((arr, curtValue) => {
     return [
       ...arr,
@@ -14,6 +14,7 @@ export default function Footer() {
       },
     ];
   }, []);
+  // console.log("arrHethongRap: ", arrHethongRap);
   let renderDoiTac = () => {
     return arrHethongRap.map((rap, index) => {
       return (
@@ -21,7 +22,10 @@ export default function Footer() {
           key={index}
           className="opacity-80 hover:opacity-100 cursor-pointer"
         >
-          <img src={rap.logo} className="w-10 h-10 object-cover" />
+          <img
+            src={rap.logo}
+            className="md:w-10 md:h-10 w-6 h-6 object-cover"
+          />
         </div>
       );
     });
@@ -31,98 +35,103 @@ export default function Footer() {
       className="text-white body-font"
       style={{ backgroundColor: "#212121" }}
     >
-      <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
-        <div className="w-64 flex-shrink-0 md:mx-0 m-auto text-center md:text-left items-center">
+      <div className="container px-5 sm:py-12 py-5 mx-auto flex md:items-center lg:items-start md:flex-row flex-wrap flex-col">
+        <div className="sm:w-64 w-32 flex-shrink-0 md:mx-0 m-auto text-center md:text-left items-center">
           <a className="flex title-font font-medium items-center md:justify-start justify-center text-white">
             <img src="http://demo1.cybersoft.edu.vn/logo.png" />
           </a>
         </div>
-        <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
-          <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
-              ĐỐI TÁC
-            </h2>
-            <div className="grid grid-cols-2 gap-4">{renderDoiTac()}</div>
-          </div>
-          <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
-              CYBERSOFT MOVIE
-            </h2>
-            <nav className="list-none mb-10">
-              <li>
-                <a className="text-gray-400 hover:text-white">Giới thiệu</a>
-              </li>
-              <li>
-                <a className="text-gray-400 hover:text-white">
-                  Tiện ích online
-                </a>
-              </li>
-              <li>
-                <a className="text-gray-400 hover:text-white">Quà tặng</a>
-              </li>
-              <li>
-                <a className="text-gray-400 hover:text-white">Tuyển dụng</a>
-              </li>
-            </nav>
-          </div>
-          <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
-              ĐIỀU KHOẢN SỬ DỤNG
-            </h2>
-            <nav className="list-none mb-10">
-              <li>
-                <a className="text-gray-400 hover:text-white">
-                  Điều khoản chung
-                </a>
-              </li>
-              <li>
-                <a className="text-gray-400 hover:text-white">
-                  Điều khoản giao dịch
-                </a>
-              </li>
-              <li>
-                <a className="text-gray-400 hover:text-white">
-                  Chính sách bảo mật
-                </a>
-              </li>
-              <li>
-                <a className="text-gray-400 hover:text-white">
-                  Chính sách thanh toán
-                </a>
-              </li>
-            </nav>
-          </div>
-          <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
-              CHĂM SÓC KHÁCH HÀNG
-            </h2>
-            <nav className="list-none mb-10">
-              <li>
-                <a className="text-gray-400 hover:text-white">
-                  Hotline: 1900 1560
-                </a>
-              </li>
-              <li>
-                <a className="text-gray-400 hover:text-white">
-                  Giờ làm việc: 8:00 - 22:00 (Tất cả các ngày bao gồm cả Lễ Tết)
-                </a>
-              </li>
-              <li>
-                <a className="text-gray-400 hover:text-white">
-                  Email hỗ trợ: cybersoft@gmail.com
-                </a>
-              </li>
-              <li>
-                <a className="text-gray-400 hover:text-white">
-                  Câu hỏi thường gặp
-                </a>
-              </li>
-            </nav>
+        <div className="hidden sm:block sm:pt-5">
+          <div className="flex-grow flex flex-wrap xl:pl-20 pl-0 -mb-10 md:mt-0 mt-10 md:text-left text-center">
+            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+              <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
+                ĐỐI TÁC
+              </h2>
+              <div className="grid lg:grid-cols-2 grid-cols-3 lg:gap-4 gap-2">
+                {renderDoiTac()}
+              </div>
+            </div>
+            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+              <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
+                CYBERSOFT MOVIE
+              </h2>
+              <nav className="list-none mb-10">
+                <li>
+                  <a className="text-gray-400 hover:text-white">Giới thiệu</a>
+                </li>
+                <li>
+                  <a className="text-gray-400 hover:text-white">
+                    Tiện ích online
+                  </a>
+                </li>
+                <li>
+                  <a className="text-gray-400 hover:text-white">Quà tặng</a>
+                </li>
+                <li>
+                  <a className="text-gray-400 hover:text-white">Tuyển dụng</a>
+                </li>
+              </nav>
+            </div>
+            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+              <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
+                ĐIỀU KHOẢN SỬ DỤNG
+              </h2>
+              <nav className="list-none mb-10">
+                <li>
+                  <a className="text-gray-400 hover:text-white">
+                    Điều khoản chung
+                  </a>
+                </li>
+                <li>
+                  <a className="text-gray-400 hover:text-white">
+                    Điều khoản giao dịch
+                  </a>
+                </li>
+                <li>
+                  <a className="text-gray-400 hover:text-white">
+                    Chính sách bảo mật
+                  </a>
+                </li>
+                <li>
+                  <a className="text-gray-400 hover:text-white">
+                    Chính sách thanh toán
+                  </a>
+                </li>
+              </nav>
+            </div>
+            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+              <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
+                CHĂM SÓC KHÁCH HÀNG
+              </h2>
+              <nav className="list-none mb-10">
+                <li>
+                  <a className="text-gray-400 hover:text-white">
+                    Hotline: 1900 1560
+                  </a>
+                </li>
+                <li>
+                  <a className="text-gray-400 hover:text-white">
+                    Giờ làm việc: 8:00 - 22:00 (Tất cả các ngày bao gồm cả Lễ
+                    Tết)
+                  </a>
+                </li>
+                <li>
+                  <a className="text-gray-400 hover:text-white">
+                    Email hỗ trợ: cybersoft@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a className="text-gray-400 hover:text-white">
+                    Câu hỏi thường gặp
+                  </a>
+                </li>
+              </nav>
+            </div>
           </div>
         </div>
       </div>
       <div className="bg-gray-100">
-        <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row items-center">
+        <div className="container mx-auto sm:py-4 sm:px-5 p-2 flex flex-wrap flex-col sm:flex-row items-center">
           <p className="text-gray-500 text-sm text-center sm:text-left mb-0">
             © 2022 Hà Chí Tâm
             <a

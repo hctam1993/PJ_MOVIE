@@ -146,61 +146,7 @@ function CheckOut() {
             </table>
           </div>
         </div>
-        {/* <div className="col-span-3 max-h-full box__tinhTien">
-          <h3 className="text-center text-2xl text-green-400 px-3">
-            {tongTien} Đ
-          </h3>
-          <hr />
-          <h3 className="text-2xl font-bold px-3">{thongTinPhim?.tenPhim}</h3>
-          <p className="px-3">
-            Địa chỉ: {thongTinPhim?.tenCumRap} - {thongTinPhim?.tenRap}
-          </p>
-          <p className="px-3">
-            Ngày chiếu: {thongTinPhim?.ngayChieu} - {thongTinPhim?.gioChieu}
-          </p>
-          <hr />
-          <div className="flex flex-row my-5 items-center pl-3">
-            <div className="w-full">
-              <span className="text-red-400 text-lg pr-3">Ghế:</span>
-              {renderGheDD()}
-            </div>
-          </div>
-          <hr />
-          <div className="my-5 px-3">
-            <i>Email</i>
-            <br />
-            {user.email}
-          </div>
-          <hr />
-          <div className="my-5 px-3">
-            <i>Phone</i>
-            <br />
-            {user.soDT}
-          </div>
-          <hr />
-          <div className="w-11/12 mx-auto flex flex-col-reverse xl:h-1/3 md:h-1/4">
-            <div
-              className="bg-green-500 text-white w-full text-2xl text-center py-3 font-bold cursor-pointer"
-              onClick={() => {
-                const thongTinDatVe = {
-                  maLichChieu: id,
-                  danhSachVe: danhSachGheDangDat,
-                };
-                // console.log("thongTinDatVe: ", thongTinDatVe);
-                dispatch(datVeXemPhim(thongTinDatVe))
-                  .then((res) => {
-                    message.success("Đặt vé thành công");
-                  })
-                  .catch((err) => {
-                    message.error(err.response?.data);
-                  });
-                dispatch(layDanhSachPhongVe(id));
-              }}
-            >
-              ĐẶT VÉ
-            </div>
-          </div>
-        </div> */}
+
         <div className="col-span-3 flex-grow basis-1/3 ">
           <div className="w-full" style={{ boxShadow: "0 0 5px grey" }}>
             <div style={paddingDatVe}>
@@ -275,7 +221,6 @@ function KetQuaDatVe(...props) {
   // console.log("thongTinDatVe", thongTinDatVe);
   const dispatch = useDispatch();
   useEffect(() => {
-    // console.log("1111111111111");
     dispatch(infoListTicket());
   }, []);
 
@@ -289,30 +234,34 @@ function KetQuaDatVe(...props) {
         </div>
       );
     }
-    return thongTinDatVe.map((item) => {
+    return thongTinDatVe.map((item, index) => {
+      console.log("item: ", item);
       return (
         <div
-          key={item.maVe}
-          className="p-2 lg:w-1/3 md:w-1/2 w-full border border-gray-500"
+          key={index + item.maVe.toString()}
+          className="p-2 lg:w-1/3 md:w-1/2 w-full"
         >
-          <img
-            alt="team"
-            className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-            src={item.hinhAnh}
-          />
-          <div className="flex-grow">
-            <h2 className="text-gray-900 title-font font-medium">
-              Tên phim: {item.tenPhim}
-            </h2>
-            <p className="text-gray-500">
-              Ngày đặt:{moment(item.ngayDat).format("DD/MM/YYYY - hh:mm:ss")}
-            </p>
-            <div>
-              Ghế:{" "}
-              {item.danhSachGhe?.map((ghe, index) => {
-                // console.log(ghe);
-                return <span key={ghe.maGhe + index}> {ghe.tenGhe}</span>;
-              })}
+          <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+            <img
+              alt="team"
+              className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
+              src={item.hinhAnh}
+            />
+            <div className="flex-grow">
+              <h2 className="text-gray-900 title-font font-medium">
+                {item.tenPhim}
+              </h2>
+              <p className="text-gray-500">
+                Ngày đặt:{moment(item.ngayDat).format("DD/MM/YYYY - hh:mm:ss")}
+              </p>
+
+              <div>
+                Ghế:{" "}
+                {item.danhSachGhe?.map((ghe, index) => {
+                  // console.log(ghe);
+                  return <span key={index}> {ghe.tenGhe}</span>;
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -331,24 +280,7 @@ function KetQuaDatVe(...props) {
             hộ chúng tôi.
           </p>
         </div>
-        <div className="flex flex-wrap -m-2">
-          {renderVeDatDat()}
-          {/* <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-            <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-              <img
-                alt="team"
-                className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                src="https://picsum.photos/100/100"
-              />
-              <div className="flex-grow">
-                <h2 className="text-gray-900 title-font font-medium">
-                  Holden Caulfield
-                </h2>
-                <p className="text-gray-500">UI Designer</p>
-              </div>
-            </div>
-          </div> */}
-        </div>
+        <div className="flex flex-wrap -m-2">{renderVeDatDat()}</div>
       </div>
     </section>
   );

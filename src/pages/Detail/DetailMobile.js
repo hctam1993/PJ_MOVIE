@@ -39,11 +39,9 @@ export default function DetailMobile() {
       // console.log("cumRap: ", cumRap);
       return {
         label: (
-          <div className="w-40 text-left">
-            <p className="text-red-700 truncate stroke-white">
-              {cumRap.tenCumRap}
-            </p>
-            <p className="text-green-700 truncate">{cumRap.diaChi}</p>
+          <div className="w-11/12 text-left">
+            <p className="text-red-700 stroke-white">{cumRap.tenCumRap}</p>
+            <p className="text-green-700">{cumRap.diaChi}</p>
           </div>
         ),
         key: cumRap.maCumRap + index,
@@ -71,7 +69,7 @@ export default function DetailMobile() {
       key: heThongRap?.maHeThongRap,
       children: (
         <Tabs
-          tabPosition="left"
+          tabPosition="top"
           style={{ minHeight: 100, overflowY: "scroll" }}
           className="h-48 scrollbar scrollbar-thumb-green-600 scrollbar-track-green-300 overflow-y-scroll hover:scrollbar-thumb-red-500"
           items={itemsCumRap(heThongRap?.cumRapChieu)}

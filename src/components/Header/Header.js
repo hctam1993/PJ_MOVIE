@@ -10,7 +10,7 @@ export default function Header() {
   };
   return (
     <header className="bg-white fixed w-full z-10">
-      <div className=" flex justify-between h-16 mx-auto w-11/12 ">
+      <div className=" flex justify-between h-16 mx-auto md:w-11/12 ">
         <NavLink to="/">
           <img
             src="http://demo1.cybersoft.edu.vn/logo.png"

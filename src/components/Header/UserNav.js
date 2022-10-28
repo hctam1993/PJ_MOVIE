@@ -33,7 +33,7 @@ export default function UserNav() {
       return (
         <div className="items-center flex-shrink-0 flex space-x-2">
           <NavLink to="/login">
-            <button className="flex items-center px-2 py-1 lg:py-2 font-semibold bg-transparent hover:text-red-500 h text-gray-500 lg:text-xl transition">
+            <button className="flex items-center px-2 py-1 lg:py-2 lg:font-semibold font-bold bg-transparent hover:text-red-500 text-gray-500 lg:text-xl transition">
               <div className="hidden sm:block">
                 <UserOutlined className="text-2xl pb-2 px-2" />
               </div>
@@ -41,7 +41,7 @@ export default function UserNav() {
             </button>
           </NavLink>
           <NavLink to="/register">
-            <button className="flex items-center px-2 py-1 lg:py-2 font-semibold bg-transparent hover:text-red-500 h text-gray-500 lg:text-xl transition">
+            <button className="flex items-center px-2 py-1 lg:py-2 lg:font-semibold font-bold bg-transparent hover:text-red-500 text-gray-500 lg:text-xl transition">
               <div className="hidden sm:block">
                 <UserOutlined className="text-2xl pb-2 px-2" />
               </div>

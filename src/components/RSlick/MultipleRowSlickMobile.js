@@ -41,10 +41,10 @@ export default function MultipleRowSlickMobile() {
     arrows: false,
   };
   return (
-    <div className="multiRow my-10 w-full mx-auto bg-gray-200">
-      <div className="xl:mb-10 mb-4">
+    <div className="multiRow my-3 w-11/12 mx-auto bg-gray-200">
+      <div className="xl:mb-10 mb-2">
         <button
-          className="bg-red-500 hover:bg-red-600 focus:bg-red-800 text-white px-4 py-2 font-semibold rounded mr-2"
+          className="bg-red-500 hover:bg-red-600 focus:bg-red-800 text-white md:px-4 md:py-2 px-2 py-1 font-medium md:font-semibold rounded mr-2"
           onClick={() => {
             dispatch(setPhimDangChieu());
           }}
@@ -52,7 +52,7 @@ export default function MultipleRowSlickMobile() {
           PHIM ĐANG CHIẾU
         </button>{" "}
         <button
-          className="bg-red-500 hover:bg-red-600 focus:bg-red-800 text-white px-4 py-2 font-semibold rounded mr-2"
+          className="bg-red-500 hover:bg-red-600 focus:bg-red-800 text-white md:px-4 md:py-2 px-2 py-1 font-medium md:font-semibold rounded mr-2"
           onClick={() => {
             dispatch(setPhimSapChieu());
           }}

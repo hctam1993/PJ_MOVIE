@@ -5,6 +5,8 @@ import { checkoutService } from "../../services/checkoutService";
 const initialState = {
   danhSachPhongVe: {},
   danhSachGheDangDat: [],
+  danhSachGheKhachDat: [],
+  tabActive: "1",
 };
 
 const checkoutSlice = createSlice({
@@ -28,6 +30,9 @@ const checkoutSlice = createSlice({
       }
 
       state.danhSachGheDangDat = danhSachGheCapNhat;
+    },
+    changeTab: (state, action) => {
+      state.tabActive = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -62,6 +67,6 @@ export const datVeXemPhim = createAsyncThunk(
   }
 );
 
-export const { datVe } = checkoutSlice.actions;
+export const { datVe, changeTab } = checkoutSlice.actions;
 
 export default checkoutSlice.reducer;

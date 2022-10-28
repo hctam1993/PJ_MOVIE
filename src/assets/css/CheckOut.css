@@ -52,6 +52,10 @@
   color: orange !important;
   border: 1px solid orange;
 }
+.gheKhachDat {
+  background-color: rgb(242, 25, 191) !important;
+  cursor: no-drop;
+}
 .box__tinhTien {
   box-shadow: -7px 10px 8px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: -7px 10px 8px 3px rgba(0, 0, 0, 0.5);

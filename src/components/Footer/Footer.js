@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 export default function Footer() {
   const { dataLichChieuTheoRap } = useSelector((state) => state.theaterSlice);
 
-  console.log("dataLichChieuTheoRap: ", dataLichChieuTheoRap);
+  // console.log("dataLichChieuTheoRap: ", dataLichChieuTheoRap);
   let arrHethongRap = dataLichChieuTheoRap.reduce((arr, curtValue) => {
     return [
       ...arr,

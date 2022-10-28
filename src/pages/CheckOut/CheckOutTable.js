@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
+  changeTab,
   datVe,
   datVeXemPhim,
   layDanhSachPhongVe,
@@ -14,6 +15,7 @@ import _ from "lodash";
 import { Tabs } from "antd";
 import { infoListTicket } from "../../redux/slice/userSlice";
 import moment from "moment";
+import Header from "../../components/Header/Header";
 
 function CheckOut() {
   const { user } = useSelector((state) => state.userSlice);
@@ -25,9 +27,8 @@ function CheckOut() {
     dispatch(layDanhSachPhongVe(id));
   }, []);
 
-  const { danhSachPhongVe, danhSachGheDangDat } = useSelector(
-    (state) => state.checkoutSlice
-  );
+  const { danhSachPhongVe, danhSachGheDangDat, danhSachGheKhachDat } =
+    useSelector((state) => state.checkoutSlice);
   // console.log("danhSachPhongVe: ", danhSachPhongVe);
 
   const { thongTinPhim, danhSachGhe } = danhSachPhongVe;
@@ -45,6 +46,14 @@ function CheckOut() {
       if (indexGheDD != -1) {
         classGheDD = "gheDangDat";
       }
+      //kiểm tra ghế khách đặt
+      let classGheKhachDat = "";
+      let indexGheKhachDat = danhSachGheKhachDat.findIndex(
+        (gheKhachDat) => gheKhachDat.maGhe == ghe.maGhe
+      );
+      if (indexGheKhachDat != -1) {
+        classGheKhachDat = "gheKhachDat";
+      }
 
       //ghe chính mình đặt
       let classGheDaDuocDat = "";
@@ -54,8 +63,8 @@ function CheckOut() {
       return (
         <Fragment key={index}>
           <button
-            className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDD} ${classGheDaDuocDat} text-center`}
-            disabled={ghe.daDat}
+            className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDD} ${classGheDaDuocDat} ${classGheKhachDat} text-center`}
+            disabled={ghe.daDat || classGheKhachDat !== ""}
             onClick={() => {
               dispatch(datVe(ghe));
             }}
@@ -79,7 +88,7 @@ function CheckOut() {
   const renderGheDD = () => {
     return _.sortBy(danhSachGheDangDat, ["stt"]).map((ghe, index) => {
       return (
-        <span key={index} className="text-green-500 text-xl">
+        <span key={index} className="text-green-500 text-md">
           {" "}
           {ghe.stt}
         </span>
@@ -92,7 +101,7 @@ function CheckOut() {
     }, 0)
     .toLocaleString();
   const paddingDatVe = {
-    padding: "24px 16px",
+    padding: "16px 8px",
   };
   return (
     <div className="mt-10">
@@ -111,6 +120,7 @@ function CheckOut() {
                   <th>Ghế VIP</th>
                   <th>Ghế đã đặt</th>
                   <th>Ghế mình đặt</th>
+                  <th>Ghế khách đang đặt</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -140,6 +150,11 @@ function CheckOut() {
                       <CheckOutlined className="mb-2 font-bold" />
                     </button>
                   </td>
+                  <td className="text-center">
+                    <button className="ghe gheKhachDangDat text-center">
+                      <CheckOutlined className="mb-2 font-bold" />
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -148,41 +163,41 @@ function CheckOut() {
         <div className="col-span-3 flex-grow basis-1/3 ">
           <div className="w-full" style={{ boxShadow: "0 0 5px grey" }}>
             <div style={paddingDatVe}>
-              <p className="text-green-500 text-4xl text-center">
+              <p className="text-green-500 text-2xl text-center">
                 {tongTien}VND
               </p>
             </div>
             <hr className="bg-gray-400 mx-4" style={{ height: 1 }} />
             <div className="flex justify-between" style={paddingDatVe}>
-              <h3 className="text-lg">Tên phim:</h3>
-              <h3 className="text-lg font-bold text-red-500">
+              <h3 className="text-md">Tên phim:</h3>
+              <h3 className="text-md font-bold text-red-500">
                 {thongTinPhim?.tenPhim}
               </h3>
             </div>
             <hr className="bg-gray-400 mx-4" style={{ height: 1 }} />
             <div className="flex justify-between" style={paddingDatVe}>
-              <h3 className="text-lg">Cụm rạp:</h3>
-              <h3 className="text-lg text-green-600">
+              <h3 className="text-md">Cụm rạp:</h3>
+              <h3 className="text-md text-green-600">
                 {thongTinPhim?.tenCumRap}-{thongTinPhim?.tenRap}
               </h3>
             </div>
             <hr className="bg-gray-400 mx-4" style={{ height: 1 }} />
             <div className="flex justify-between" style={paddingDatVe}>
-              <h3 className="text-lg">Địa chỉ:</h3>
-              <h3 className="text-lg  text-green-600">
+              <h3 className="text-md">Địa chỉ:</h3>
+              <h3 className="text-md  text-green-600">
                 {thongTinPhim?.diaChi}
               </h3>
             </div>
             <hr className="bg-gray-400 mx-4" style={{ height: 1 }} />
             <div className="flex justify-between" style={paddingDatVe}>
-              <h3 className="text-lg">Ngày giờ chiếu:</h3>
-              <h3 className="text-lg  text-green-600">
+              <h3 className="text-md">Ngày giờ chiếu:</h3>
+              <h3 className="text-md  text-green-600">
                 {thongTinPhim?.ngayChieu} - {thongTinPhim?.gioChieu}
               </h3>
             </div>
             <hr className="bg-gray-400 mx-4" style={{ height: 1 }} />
             <div className="flex justify-between" style={paddingDatVe}>
-              <h3 className="text-lg">Ghế:</h3>
+              <h3 className="text-md">Ghế:</h3>
               <div>{renderGheDD()}</div>
             </div>
             <hr className="bg-gray-400 mx-4" style={{ height: 1 }} />
@@ -215,48 +230,60 @@ function CheckOut() {
 function KetQuaDatVe(...props) {
   const { thongTinNguoiDung } = useSelector((state) => state.userSlice);
   const thongTinDatVe = thongTinNguoiDung?.thongTinDatVe;
-  // console.log("thongTinNguoiDung", thongTinNguoiDung);
-  // console.log("thongTinDatVe", thongTinDatVe);
+
+  let thongTinDatVeReverse = thongTinDatVe?.slice().reverse();
+
   const dispatch = useDispatch();
   useEffect(() => {
-    // console.log("1111111111111");
     dispatch(infoListTicket());
   }, []);
 
   const renderVeDatDat = () => {
     if (!thongTinDatVe) {
       return (
-        <div>
-          <h1 className="text-4xl uppercase text-center">
+        <div className="container">
+          <h1 className="text-4xl uppercase text-center mx-auto">
             Không load được thông tin đặt vé
           </h1>
         </div>
       );
     }
-    return thongTinDatVe.map((item, index) => {
+    return thongTinDatVeReverse.map((item, index) => {
+      // console.log("item: ", item);
       return (
         <div
-          key={item.maVe + index}
-          className="p-2 lg:w-1/3 md:w-1/2 w-full border border-gray-500"
+          key={index + item.maVe.toString()}
+          className="p-2 lg:w-1/3 md:w-1/2 w-full"
         >
-          <img
-            alt="team"
-            className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-            src={item.hinhAnh}
-          />
-          <div className="flex-grow">
-            <h2 className="text-gray-900 title-font font-medium">
-              Tên phim: {item.tenPhim}
-            </h2>
-            <p className="text-gray-500">
-              Ngày đặt:{moment(item.ngayDat).format("DD/MM/YYYY - hh:mm:ss")}
-            </p>
-            <div>
-              Ghế:{" "}
-              {item.danhSachGhe?.map((ghe, index) => {
-                // console.log(ghe);
-                return <span key={ghe.maGhe + index}> {ghe.tenGhe}</span>;
-              })}
+          <div className="h-full flex items-start border-gray-200 border p-4 rounded-lg">
+            <img
+              alt="team"
+              className="w-1/5 bg-gray-100 object-cover object-center flex-shrink-0 mr-4"
+              src={item.hinhAnh}
+            />
+            <div className="flex-grow">
+              <h2 className="text-red-700 text-lg font-bold">{item.tenPhim}</h2>
+              <p className="text-gray-500">
+                <span className="font-bold">Ngày đặt: </span>
+                {moment(item.ngayDat).format("DD/MM/YYYY - hh:mm:ss")}
+              </p>
+              <p>
+                <span className="font-bold">Địa điểm: </span>
+                {item.danhSachGhe[0].tenHeThongRap}
+              </p>
+              <div>
+                <span>{item.danhSachGhe[0].tenRap} - </span>
+                Ghế:{" "}
+                {item.danhSachGhe?.map((ghe, index) => {
+                  // console.log(ghe);
+                  return (
+                    <span className="text-green-500" key={index}>
+                      {" "}
+                      [ {ghe.tenGhe} ]
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -281,17 +308,32 @@ function KetQuaDatVe(...props) {
   );
 }
 const CheckOutTable = () => {
+  const { tabActive } = useSelector((state) => state.checkoutSlice);
+  console.log("tabActive", tabActive);
   const items = [
     {
       label: "01 CHỌN GHẾ & THANH TOÁN",
-      key: "item-1",
+      key: "1",
       children: <CheckOut />,
     },
-    { label: "02 KẾT QUẢ ĐẶT VÉ", key: "item-2", children: <KetQuaDatVe /> },
+    { label: "02 KẾT QUẢ ĐẶT VÉ", key: "2", children: <KetQuaDatVe /> },
   ];
+  const dispatch = useDispatch();
   return (
     <div className="">
-      <Tabs animated items={items} className="" />
+      <Header />
+      <div className="mx-2 pt-16">
+        <Tabs
+          animated
+          items={items}
+          className="mt-40"
+          defaultActiveKey="1"
+          activeKey={tabActive}
+          onChange={(key) => {
+            dispatch(changeTab(key));
+          }}
+        />
+      </div>
     </div>
   );
 };

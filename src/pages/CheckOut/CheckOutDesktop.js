@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
+  changeTab,
   datVe,
   datVeXemPhim,
   layDanhSachPhongVe,
@@ -10,9 +11,10 @@ import "../../assets/css/CheckOut.css";
 import { CheckOutlined, CloseOutlined, UserOutlined } from "@ant-design/icons";
 import "lodash";
 import _ from "lodash";
-import { Tabs } from "antd";
+import { message, Tabs } from "antd";
 import { infoListTicket } from "../../redux/slice/userSlice";
 import moment from "moment";
+import Header from "../../components/Header/Header";
 
 function CheckOut() {
   const { user } = useSelector((state) => state.userSlice);
@@ -24,10 +26,10 @@ function CheckOut() {
     dispatch(layDanhSachPhongVe(id));
   }, []);
 
-  const { danhSachPhongVe, danhSachGheDangDat } = useSelector(
-    (state) => state.checkoutSlice
-  );
+  const { danhSachPhongVe, danhSachGheDangDat, danhSachGheKhachDat } =
+    useSelector((state) => state.checkoutSlice);
   // console.log("danhSachPhongVe: ", danhSachPhongVe);
+  // console.log("danhSachGheDangDat", danhSachGheDangDat);
 
   const { thongTinPhim, danhSachGhe } = danhSachPhongVe;
 
@@ -44,7 +46,14 @@ function CheckOut() {
       if (indexGheDD != -1) {
         classGheDD = "gheDangDat";
       }
-
+      //kiểm tra ghế khách đặt
+      let classGheKhachDat = "";
+      let indexGheKhachDat = danhSachGheKhachDat.findIndex(
+        (gheKhachDat) => gheKhachDat.maGhe == ghe.maGhe
+      );
+      if (indexGheKhachDat != -1) {
+        classGheKhachDat = "gheKhachDat";
+      }
       //ghe chính mình đặt
       let classGheDaDuocDat = "";
       if (user.taiKhoan === ghe.taiKhoanNguoiDat) {
@@ -53,14 +62,14 @@ function CheckOut() {
       return (
         <Fragment key={index}>
           <button
-            className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDD} ${classGheDaDuocDat} text-center`}
-            disabled={ghe.daDat}
+            className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDD} ${classGheDaDuocDat} ${classGheKhachDat} text-center`}
+            disabled={ghe.daDat || classGheKhachDat !== ""}
             onClick={() => {
               dispatch(datVe(ghe));
             }}
           >
             {ghe.daDat ? (
-              classGheDaDuocDat != "" ? (
+              classGheDaDuocDat != "" || classGheKhachDat != "" ? (
                 <UserOutlined className="font-bold" />
               ) : (
                 <CloseOutlined className="mb-1 font-bold" />
@@ -112,6 +121,7 @@ function CheckOut() {
                   <th>Ghế VIP</th>
                   <th>Ghế đã đặt</th>
                   <th>Ghế mình đặt</th>
+                  <th>Ghế khách đang đặt</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -138,6 +148,11 @@ function CheckOut() {
                   </td>
                   <td className="text-center">
                     <button className="ghe gheDaDuocDat text-center">
+                      <CheckOutlined className="mb-2 font-bold" />
+                    </button>
+                  </td>
+                  <td className="text-center">
+                    <button className="ghe gheKhachDangDat text-center">
                       <CheckOutlined className="mb-2 font-bold" />
                     </button>
                   </td>
@@ -191,14 +206,18 @@ function CheckOut() {
             <button
               className="text-white w-full bg-red-500 hover:bg-red-700 text-2xl mt-6 rounded p-2"
               onClick={() => {
-                const thongTinDatVe = {
-                  maLichChieu: id,
-                  danhSachVe: danhSachGheDangDat,
-                };
-                console.log("thongTinDatVe: ", thongTinDatVe);
-                dispatch(datVeXemPhim(thongTinDatVe));
-
-                dispatch(layDanhSachPhongVe(id));
+                if (danhSachGheDangDat.length === 0) {
+                  message.warning("Bạn chưa chọn ghế, mời bạn chọn ghế!");
+                } else {
+                  const thongTinDatVe = {
+                    maLichChieu: id,
+                    danhSachVe: danhSachGheDangDat,
+                  };
+                  // console.log("thongTinDatVe: ", thongTinDatVe);
+                  dispatch(datVeXemPhim(thongTinDatVe));
+                  dispatch(layDanhSachPhongVe(id));
+                  dispatch(changeTab("2"));
+                }
               }}
             >
               <span
@@ -217,8 +236,9 @@ function CheckOut() {
 function KetQuaDatVe(...props) {
   const { thongTinNguoiDung } = useSelector((state) => state.userSlice);
   const thongTinDatVe = thongTinNguoiDung?.thongTinDatVe;
-  // console.log("thongTinNguoiDung", thongTinNguoiDung);
-  // console.log("thongTinDatVe", thongTinDatVe);
+
+  let thongTinDatVeReverse = thongTinDatVe?.slice().reverse();
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(infoListTicket());
@@ -227,39 +247,47 @@ function KetQuaDatVe(...props) {
   const renderVeDatDat = () => {
     if (!thongTinDatVe) {
       return (
-        <div>
-          <h1 className="text-4xl uppercase text-center">
+        <div className="container">
+          <h1 className="text-4xl uppercase text-center mx-auto">
             Không load được thông tin đặt vé
           </h1>
         </div>
       );
     }
-    return thongTinDatVe.map((item, index) => {
-      console.log("item: ", item);
+    return thongTinDatVeReverse.map((item, index) => {
+      // console.log("item: ", item);
       return (
         <div
           key={index + item.maVe.toString()}
           className="p-2 lg:w-1/3 md:w-1/2 w-full"
         >
-          <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+          <div className="h-full flex items-start border-gray-200 border p-4 rounded-lg">
             <img
               alt="team"
-              className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
+              className="w-1/5 bg-gray-100 object-cover object-center flex-shrink-0 mr-4"
               src={item.hinhAnh}
             />
             <div className="flex-grow">
-              <h2 className="text-gray-900 title-font font-medium">
-                {item.tenPhim}
-              </h2>
+              <h2 className="text-red-700 text-lg font-bold">{item.tenPhim}</h2>
               <p className="text-gray-500">
-                Ngày đặt:{moment(item.ngayDat).format("DD/MM/YYYY - hh:mm:ss")}
+                <span className="font-bold">Ngày đặt: </span>
+                {moment(item.ngayDat).format("DD/MM/YYYY - hh:mm:ss")}
               </p>
-
+              <p>
+                <span className="font-bold">Địa điểm: </span>
+                {item.danhSachGhe[0].tenHeThongRap}
+              </p>
               <div>
+                <span>{item.danhSachGhe[0].tenRap} - </span>
                 Ghế:{" "}
                 {item.danhSachGhe?.map((ghe, index) => {
                   // console.log(ghe);
-                  return <span key={index}> {ghe.tenGhe}</span>;
+                  return (
+                    <span className="text-green-500" key={index}>
+                      {" "}
+                      [ {ghe.tenGhe} ]
+                    </span>
+                  );
                 })}
               </div>
             </div>
@@ -286,17 +314,32 @@ function KetQuaDatVe(...props) {
   );
 }
 const CheackOutDesktop = () => {
+  const { tabActive } = useSelector((state) => state.checkoutSlice);
+  console.log("tabActive", tabActive);
   const items = [
     {
       label: "01 CHỌN GHẾ & THANH TOÁN",
-      key: "item-1",
+      key: "1",
       children: <CheckOut />,
     },
-    { label: "02 KẾT QUẢ ĐẶT VÉ", key: "item-2", children: <KetQuaDatVe /> },
+    { label: "02 KẾT QUẢ ĐẶT VÉ", key: "2", children: <KetQuaDatVe /> },
   ];
+  const dispatch = useDispatch();
   return (
-    <div className="">
-      <Tabs animated items={items} className="mt-40" />
+    <div>
+      <Header />
+      <div className="mx-2 pt-16">
+        <Tabs
+          animated
+          items={items}
+          className="mt-40"
+          activeKey={tabActive}
+          defaultActiveKey="1"
+          onChange={(key) => {
+            dispatch(changeTab(key));
+          }}
+        />
+      </div>
     </div>
   );
 };
